@@ -24,23 +24,31 @@ namespace PacificEngine.OW_CheatsMod
         Toggle_Rumors,
         Teleport_To_Sun,
         Teleport_To_SunStation,
-        Teleport_To_EmberTwin, // CaveTwin
-        Teleport_To_AshTwin, // TowerTwin
+        Teleport_To_EmberTwin = 7,
+        Teleport_To_CaveTwin = 7,
+        Teleport_To_AshTwin = 8,
+        Teleport_To_TowerTwin = 8,
         Teleport_To_AshTwinProject,
         Teleport_To_TimberHearth,
-        Teleport_To_TimberHearth_Probe, // TimberHearth.Satellite
-        Teleport_To_Attlerock, // TimberHearth.Moon
-        Teleport_To_BrittleHollow,
-        Teleport_To_HollowLattern, // BrittleHollow.Moon
+        Teleport_To_TimberHearth_Probe = 11,
+        Teleport_To_TimberHearth_Satellite = 11,
+        Teleport_To_TimberHearth_Moon = 12,
+        Teleport_To_Attlerock = 12,
+        Teleport_To_BrittleHollow = 13,
+        Teleport_To_BrittleHollow_Moon = 14,
+        Teleport_To_HollowLattern = 14,
         Teleport_To_GiantsDeep,
         Teleport_To_ProbeCannon,
         Teleport_To_ProbeCannonCommandModule,
         Teleport_To_DarkBramble,
         Teleport_To_Vessel,
-        Teleport_To_Interloper, // Comet
+        Teleport_To_Interloper = 20,
+        Teleport_To_Comet = 20,
         Teleport_To_WhiteHole,
-        Teleport_To_WhiteHoleStation, // WhiteHoleTarget
-        Teleport_To_Stranger, // RingWorld
+        Teleport_To_WhiteHoleStation = 22,
+        Teleport_To_WhiteHoleTarget = 22,
+        Teleport_To_Stranger = 23,
+        Teleport_To_RingWorld = 23,
         Teleport_To_DreamWorld,
         Teleport_To_QuantumMoon,
         Teleport_To_Ship,
