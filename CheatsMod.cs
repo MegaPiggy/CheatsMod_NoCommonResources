@@ -402,6 +402,12 @@ namespace PacificEngine.OW_CheatsMod
                         case CheatOptions.Teleport_To_QuantumMoon:
                             Teleportation.teleportPlayerToQuantumMoon();
                             break;
+                        case CheatOptions.Teleport_To_Mapping_Satellite:
+                            Teleportation.teleportPlayerToMappingSatellite();
+                            break;
+                        case CheatOptions.Teleport_To_Backer_Satellite:
+                            Teleportation.teleportPlayerToBackerSatellite();
+                            break;
                         case CheatOptions.Toggle_Helmet:
                             Player.helmet = !Player.helmet;
                             ModHelper.Console.WriteLine("CheatsMod: Player Helmet " + Player.helmet);
