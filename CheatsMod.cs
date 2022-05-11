@@ -28,7 +28,7 @@ namespace PacificEngine.OW_CheatsMod
         Teleport_To_AshTwin, // TowerTwin
         Teleport_To_AshTwinProject,
         Teleport_To_TimberHearth,
-        Teleport_To_TimberHearth_Probe, // TimberHearth.Satillite
+        Teleport_To_TimberHearth_Probe, // TimberHearth.Satellite
         Teleport_To_Attlerock, // TimberHearth.Moon
         Teleport_To_BrittleHollow,
         Teleport_To_HollowLattern, // BrittleHollow.Moon
