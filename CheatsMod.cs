@@ -27,9 +27,9 @@ namespace PacificEngine.OW_CheatsMod
         Teleport_To_EmberTwin, // CaveTwin
         Teleport_To_AshTwin, // TowerTwin
         Teleport_To_AshTwinProject,
-        Teleport_To_TimerHearth,
-        Teleport_To_TimerHearth_Probe, // TimerHearth.Satillite
-        Teleport_To_Attlerock, // TimerHearth.Moon
+        Teleport_To_TimberHearth,
+        Teleport_To_TimberHearth_Probe, // TimberHearth.Satillite
+        Teleport_To_Attlerock, // TimberHearth.Moon
         Teleport_To_BrittleHollow,
         Teleport_To_HollowLattern, // BrittleHollow.Moon
         Teleport_To_GiantsDeep,
@@ -186,7 +186,7 @@ namespace PacificEngine.OW_CheatsMod
             inputs.addInput(config, CheatOptions.Teleport_To_SunStation, "T,Digit2");
             inputs.addInput(config, CheatOptions.Teleport_To_EmberTwin, "T,Digit3");
             inputs.addInput(config, CheatOptions.Teleport_To_AshTwin, "T,Digit4");
-            inputs.addInput(config, CheatOptions.Teleport_To_TimerHearth, "T,Digit5");
+            inputs.addInput(config, CheatOptions.Teleport_To_TimberHearth, "T,Digit5");
             inputs.addInput(config, CheatOptions.Teleport_To_Attlerock, "T,Digit6");
             inputs.addInput(config, CheatOptions.Teleport_To_BrittleHollow, "T,Digit7");
             inputs.addInput(config, CheatOptions.Teleport_To_HollowLattern, "T,Digit8");
@@ -194,7 +194,7 @@ namespace PacificEngine.OW_CheatsMod
             inputs.addInput(config, CheatOptions.Teleport_To_DarkBramble, "T,Digit0");
 
             inputs.addInput(config, CheatOptions.Teleport_To_Interloper, "T,Numpad0");
-            inputs.addInput(config, CheatOptions.Teleport_To_TimerHearth_Probe, "T,Numpad1");
+            inputs.addInput(config, CheatOptions.Teleport_To_TimberHearth_Probe, "T,Numpad1");
             inputs.addInput(config, CheatOptions.Teleport_To_ProbeCannon, "T,Numpad2");
             inputs.addInput(config, CheatOptions.Teleport_To_WhiteHole, "T,Numpad3");
             inputs.addInput(config, CheatOptions.Teleport_To_WhiteHoleStation, "T,Numpad4");
@@ -334,10 +334,10 @@ namespace PacificEngine.OW_CheatsMod
                         case CheatOptions.Teleport_To_AshTwinProject:
                             Teleportation.teleportPlayerToAshTwinProject();
                             break;
-                        case CheatOptions.Teleport_To_TimerHearth:
+                        case CheatOptions.Teleport_To_TimberHearth:
                             Teleportation.teleportPlayerToTimberHearth();
                             break;
-                        case CheatOptions.Teleport_To_TimerHearth_Probe:
+                        case CheatOptions.Teleport_To_TimberHearth_Probe:
                             Teleportation.teleportPlayerToTimberHearthProbe();
                             break;
                         case CheatOptions.Teleport_To_Attlerock:
