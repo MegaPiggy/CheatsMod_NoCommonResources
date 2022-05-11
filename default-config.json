@@ -133,6 +133,7 @@
     "Give Lantern Gen1": "G,L,Digit3",
     "Give Lantern Gen2": "G,L,Digit4",
     "Give Lantern Gen3": "G,L,Digit5",
+    "Give Lantern Invalid": "G,L,Digit6",
     "Give Slide Story 1": "G,R,S,Digit1",
     "Give Slide Story 2": "G,R,S,Digit2",
     "Give Slide Story 3": "G,R,S,Digit3",

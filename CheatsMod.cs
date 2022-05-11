@@ -91,6 +91,7 @@ namespace PacificEngine.OW_CheatsMod
         Give_Warp_Core_None,
         Give_Lantern_Basic,
         Give_Lantern_Broken,
+        Give_Lantern_Invalid,
         Give_Lantern_Gen1,
         Give_Lantern_Gen2,
         Give_Lantern_Gen3,
@@ -241,6 +242,7 @@ namespace PacificEngine.OW_CheatsMod
             inputs.addInput(config, CheatOptions.Give_Lantern_Gen1, "G,L,Digit3");
             inputs.addInput(config, CheatOptions.Give_Lantern_Gen2, "G,L,Digit4");
             inputs.addInput(config, CheatOptions.Give_Lantern_Gen3, "G,L,Digit5");
+            inputs.addInput(config, CheatOptions.Give_Lantern_Invalid, "G,L,Digit6");
             inputs.addInput(config, CheatOptions.Give_Slide_Story_1, "G,R,S,Digit1");
             inputs.addInput(config, CheatOptions.Give_Slide_Story_2, "G,R,S,Digit2");
             inputs.addInput(config, CheatOptions.Give_Slide_Story_3, "G,R,S,Digit3");
@@ -533,6 +535,9 @@ namespace PacificEngine.OW_CheatsMod
                             break;
                         case CheatOptions.Give_Lantern_Broken:
                             Possession.pickUpLantern(true, false);
+                            break;
+                        case CheatOptions.Give_Lantern_Invalid:
+                            Possession.pickUpDreamLantern(DreamLanternType.Invalid, false);
                             break;
                         case CheatOptions.Give_Lantern_Gen1:
                             Possession.pickUpDreamLantern(DreamLanternType.Nonfunctioning, false);
