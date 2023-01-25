@@ -4,17 +4,17 @@ using OWML.ModHelper.Events;
 using OWML.Utils;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using PacificEngine.OW_CommonResources;
-using PacificEngine.OW_CommonResources.Game.Player;
-using PacificEngine.OW_CommonResources.Game.State;
-using PacificEngine.OW_CommonResources.Game.Resource;
-using PacificEngine.OW_CommonResources.Game.Config;
-using PacificEngine.OW_CommonResources.Game;
+using HarmonyLib;
 
-namespace PacificEngine.OW_CheatsMod
+namespace CheatsMod
 {
+    using CR;
+    using UnityEngine.SceneManagement;
+
     enum CheatOptions
     {
         Fill_Fuel_and_Health,
@@ -83,7 +83,6 @@ namespace PacificEngine.OW_CheatsMod
         Increase_Jetpack_Acceleration,
         Decrease_Ship_Acceleration,
         Increase_Ship_Acceleration,
-        Give_Warp_Core,
         Give_Warp_Core_Vessel,
         Give_Warp_Core_Broken,
         Give_Warp_Core_Black,
@@ -121,15 +120,36 @@ namespace PacificEngine.OW_CheatsMod
         Give_Slide_Homeworld,
         Give_Slide_SupernovaEscape,
         Toggle_Fog,
-        Toggle_Position_Display,
-        Toggle_Planet_Position_Display,
-        Toggle_Bramble_Portal_Display,
-        Toggle_Warp_Pad_Display,
-        Log_Fact_Reveals,
-        Log_Save_Condition_Changes,
-        Log_Dialogue_Condition_Changes
+        Give_Vision_Torch,
+        Give_Identify_Conversation_Stone,
+        Give_Explain_Conversation_Stone,
+        Give_Eye_Conversation_Stone,
+        Give_Quantum_Moon_Conversation_Stone,
+        Give_You_Conversation_Stone,
+        Give_Me_Conversation_Stone,
+        Give_Nomai_Conversation_Stone,
+        Give_Sun_Station_Projection_Stone,
+        Give_Time_Loop_Projection_Stone,
+        Give_Eye_Locator_Projection_Stone,
+        Give_Mine_Projection_Stone,
+        Give_Observatory_Projection_Stone,
+        Give_Gravity_Cannon_Projection_Stone,
+        Give_Quantum_Fragment_Projection_Stone,
+        Give_Black_Hole_Forge_Projection_Stone,
+        Give_Construction_Yard_1st_Projection_Stone,
+        Give_Construction_Yard_2nd_Projection_Stone,
+        Give_Statue_Projection_Stone,
+        Give_Tracking_Module_Projection_Stone,
+        Give_Launch_Module_Projection_Stone,
+        Give_Control_Module_Projection_Stone,
+        Give_Volcanic_Projection_Stone,
+        Give_High_Energy_Lab_Projection_Stone,
+        Give_North_Pole_Projection_Stone,
+        Eject_Ship,
+        Explode_Ship
     }
 
+    [HarmonyPatch]
     public class MainClass : ModBehaviour
     {
         private const string verison = "0.7.5";
@@ -138,16 +158,53 @@ namespace PacificEngine.OW_CheatsMod
         bool cheatsEnabled = true;
         InputMapping<CheatOptions> inputs = new InputMapping<CheatOptions>();
 
+        private static MainClass instance;
+        public static MainClass Instance => instance;
+        public static IModHelper ModHelperInstance => instance.ModHelper;
+        public static IModConsole Console => instance.ModHelper.Console;
+        public static IHarmonyHelper HarmonyHelper => instance.ModHelper.HarmonyHelper;
+
+        void Awake()
+        {
+            instance = this;
+        }
+
         void Start()
         {
+            //Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly());
             ModHelper.Events.Player.OnPlayerAwake += (player) => onAwake();
-
+            ModHelper.HarmonyHelper.AddPrefix(AccessTools.Method(typeof(OWExtensions), "GetAttachedOWRigidbody", new Type[2] { typeof(Component), typeof(bool) }), typeof(MainClass), nameof(OWExtensions_GetAttachedOWRigidbody));
+            ModHelper.HarmonyHelper.AddPrefix<HighSpeedImpactSensor>("FixedUpdate", typeof(MainClass), nameof(HighSpeedImpactSensor_FixedUpdate));
+            ModHelper.HarmonyHelper.AddPrefix<PlayerResources>("OnImpact", typeof(MainClass), nameof(PlayerResources_OnImpact));
             ModHelper.Console.WriteLine("CheatMods ready!");
+            Position.Awake();
+            Items.Awake();
+            Items.Start();
+            Fog.Start();
+            Anglerfish.Start();
+            Inhabitants.Start();
+            SceneManager.sceneLoaded += (s,l) => OnExitDreamWorld();
+            SceneManager.sceneUnloaded += (s) => OnExitDreamWorld();
+            GlobalMessenger.AddListener("EnterDreamWorld", OnEnterDreamWorld);
+            GlobalMessenger.AddListener("ExitDreamWorld", OnExitDreamWorld);
         }
 
         void Destory()
         {
             ModHelper.Console.WriteLine("CheatMods clean up!");
+        }
+
+        public static bool HighSpeedImpactSensor_FixedUpdate() => !Player.isInvincible;
+        public static bool PlayerResources_OnImpact() => !Player.isInvincible;
+
+        public static bool OWExtensions_GetAttachedOWRigidbody(ref OWRigidbody __result, Component cmpt)
+        {
+            if (cmpt == null || cmpt.gameObject == null|| cmpt.transform == null)
+            {
+                __result = null;
+                return false;
+            }
+            return true;
         }
 
         public override void Configure(IModConfig config)
@@ -180,16 +237,17 @@ namespace PacificEngine.OW_CheatsMod
             inputs.addInput(config, CheatOptions.Toggle_Invinciblity, "C,I");
             inputs.addInput(config, CheatOptions.Toggle_Spacesuit, "C,G");
             inputs.addInput(config, CheatOptions.Toggle_Training_Suit, "C,Digit1");
-            inputs.addInput(config, CheatOptions.Toggle_Player_Gravity, "C,N");
-            inputs.addInput(config, CheatOptions.Toggle_Ship_Gravity, "C,N");
-            inputs.addInput(config, CheatOptions.Toggle_Player_Collision, "C,N");
-            inputs.addInput(config, CheatOptions.Toggle_Ship_Collision, "C,N");
-            inputs.addInput(config, CheatOptions.Toggle_Player_Fluid_Collision, "C,N");
-            inputs.addInput(config, CheatOptions.Toggle_Ship_Fluid_Collision, "C,N");
+            inputs.addInput(config, CheatOptions.Toggle_Player_Gravity, "P,G");
+            inputs.addInput(config, CheatOptions.Toggle_Ship_Gravity, "S,G");
+            inputs.addInput(config, CheatOptions.Toggle_Player_Collision, "P,C");
+            inputs.addInput(config, CheatOptions.Toggle_Ship_Collision, "S,C");
+            inputs.addInput(config, CheatOptions.Toggle_Player_Fluid_Collision, "P,F");
+            inputs.addInput(config, CheatOptions.Toggle_Ship_Fluid_Collision, "S,F");
             inputs.addInput(config, CheatOptions.Toggle_Unlimited_Boost, "C,T");
             inputs.addInput(config, CheatOptions.Toggle_Unlimited_Fuel, "C,Y");
             inputs.addInput(config, CheatOptions.Toggle_Unlimited_Oxygen, "C,O");
             inputs.addInput(config, CheatOptions.Toggle_Unlimited_Health, "C,U");
+            inputs.addInput(config, CheatOptions.Toggle_Fog, "F,O,G");
 
             inputs.addInput(config, CheatOptions.Teleport_To_Sun, "T,Digit1");
             inputs.addInput(config, CheatOptions.Teleport_To_SunStation, "T,Digit2");
@@ -218,6 +276,9 @@ namespace PacificEngine.OW_CheatsMod
             inputs.addInput(config, CheatOptions.Teleport_To_Vessel, "T,NumpadPlus");
             inputs.addInput(config, CheatOptions.Teleport_To_ProbeCannonCommandModule, "T,NumpadPeriod");
 
+            inputs.addInput(config, CheatOptions.Teleport_To_Backer_Satellite, "T,B");
+            inputs.addInput(config, CheatOptions.Teleport_To_Mapping_Satellite, "T,M");
+
             inputs.addInput(config, CheatOptions.Toggle_Anglerfish_AI, "V,I");
             inputs.addInput(config, CheatOptions.Toggle_Inhabitants_AI, "V,O");
             inputs.addInput(config, CheatOptions.Toggle_Inhabitants_Hostility, "V,H");
@@ -231,7 +292,6 @@ namespace PacificEngine.OW_CheatsMod
             inputs.addInput(config, CheatOptions.Decrease_Ship_Acceleration, "O,Minus");
             inputs.addInput(config, CheatOptions.Increase_Ship_Acceleration, "O,Equals");
 
-            inputs.addInput(config, CheatOptions.Give_Warp_Core, "G,W");
             inputs.addInput(config, CheatOptions.Give_Warp_Core_Vessel, "G,T,Digit1");
             inputs.addInput(config, CheatOptions.Give_Warp_Core_Broken, "G,T,Digit2");
             inputs.addInput(config, CheatOptions.Give_Warp_Core_Black, "G,T,Digit3");
@@ -268,32 +328,71 @@ namespace PacificEngine.OW_CheatsMod
             inputs.addInput(config, CheatOptions.Give_Slide_Rule_3, "G,R,P,Digit9");
             inputs.addInput(config, CheatOptions.Give_Slide_Rule_4, "G,R,P,Digit0");
 
-            inputs.addInput(config, CheatOptions.Toggle_Fog, "F,O,G");
-            inputs.addInput(config, CheatOptions.Toggle_Position_Display, "D,P");
-            inputs.addInput(config, CheatOptions.Toggle_Planet_Position_Display, "D,Z");
-            inputs.addInput(config, CheatOptions.Toggle_Bramble_Portal_Display, "D,B");
-            inputs.addInput(config, CheatOptions.Toggle_Warp_Pad_Display, "D,W");
-            inputs.addInput(config, CheatOptions.Log_Fact_Reveals, "L,Digit1");
-            inputs.addInput(config, CheatOptions.Log_Save_Condition_Changes, "L,Digit2");
-            inputs.addInput(config, CheatOptions.Log_Dialogue_Condition_Changes, "L,Digit3");
+            inputs.addInput(config, CheatOptions.Give_Vision_Torch, "G,L,Digit7");
+
+            inputs.addInput(config, CheatOptions.Give_Identify_Conversation_Stone, "C,Digit2");
+            inputs.addInput(config, CheatOptions.Give_Explain_Conversation_Stone, "C,Digit3");
+            inputs.addInput(config, CheatOptions.Give_Eye_Conversation_Stone, "C,Digit4");
+            inputs.addInput(config, CheatOptions.Give_Quantum_Moon_Conversation_Stone, "C,Digit5");
+            inputs.addInput(config, CheatOptions.Give_You_Conversation_Stone, "C,Digit6");
+            inputs.addInput(config, CheatOptions.Give_Me_Conversation_Stone, "C,Digit7");
+            inputs.addInput(config, CheatOptions.Give_Nomai_Conversation_Stone, "C,Digit8");
+
+            inputs.addInput(config, CheatOptions.Give_Sun_Station_Projection_Stone, "P,S,Digit1");
+            inputs.addInput(config, CheatOptions.Give_Time_Loop_Projection_Stone, "P,S,Digit2");
+            inputs.addInput(config, CheatOptions.Give_Eye_Locator_Projection_Stone, "P,S,Digit3");
+            inputs.addInput(config, CheatOptions.Give_Mine_Projection_Stone, "P,S,Digit4");
+            inputs.addInput(config, CheatOptions.Give_Observatory_Projection_Stone, "P,S,Digit5");
+            inputs.addInput(config, CheatOptions.Give_Gravity_Cannon_Projection_Stone, "P,S,Digit6");
+            inputs.addInput(config, CheatOptions.Give_Quantum_Fragment_Projection_Stone, "P,S,Digit7");
+            inputs.addInput(config, CheatOptions.Give_Black_Hole_Forge_Projection_Stone, "P,S,Digit8");
+            inputs.addInput(config, CheatOptions.Give_Construction_Yard_1st_Projection_Stone, "P,S,Digit9");
+            inputs.addInput(config, CheatOptions.Give_Construction_Yard_2nd_Projection_Stone, "P,S,Digit0");
+            inputs.addInput(config, CheatOptions.Give_Statue_Projection_Stone, "P,S,Numpad1");
+            inputs.addInput(config, CheatOptions.Give_Tracking_Module_Projection_Stone, "P,S,Numpad2");
+            inputs.addInput(config, CheatOptions.Give_Launch_Module_Projection_Stone, "P,S,Numpad3");
+            inputs.addInput(config, CheatOptions.Give_Control_Module_Projection_Stone, "P,S,Numpad4");
+            inputs.addInput(config, CheatOptions.Give_Volcanic_Projection_Stone, "P,S,Numpad5");
+            inputs.addInput(config, CheatOptions.Give_High_Energy_Lab_Projection_Stone, "P,S,Numpad6");
+            inputs.addInput(config, CheatOptions.Give_North_Pole_Projection_Stone, "P,S,S,Numpad7");
+
+            inputs.addInput(config, CheatOptions.Eject_Ship, "LeftAlt,Digit1");
+            inputs.addInput(config, CheatOptions.Explode_Ship, "LeftAlt,Digit2");
 
             ModHelper.Console.WriteLine("CheatMods Confgiured!");
         }
 
+        public bool inDreamWorld = false;
 
+        public void OnEnterDreamWorld()
+        {
+            inDreamWorld = true;
+        }
+
+        public void OnExitDreamWorld()
+        {
+            inDreamWorld = false;
+        }
 
         void onAwake()
         {
             ModHelper.Console.WriteLine("CheatMods: Player Awakes");
+            Position.Awake();
+            Items.Awake();
+            foreach (ThrustRuleset thrustRuleset in GameObject.FindObjectsOfType<ThrustRuleset>())
+            {
+                thrustRuleset._thrustLimit *= 100;
+            }
+            GameObject.DontDestroyOnLoad(new GameObject("LudicrousSpeed", typeof(LudicrousSpeed)));
         }
 
         void OnGUI()
         {
             cheatsTagger.SetText("CheatsMod v" + verison + ": " + (cheatsEnabled ? "Enabled" : "Disabled"));
-            if (Locator.GetPromptManager()?.GetScreenPromptList(PromptPosition.LowerLeft)?.Contains(cheatsTagger) == false)
-            {
-                Locator.GetPromptManager().AddScreenPrompt(cheatsTagger, PromptPosition.LowerLeft, true);
-            }
+            //if (Locator.GetPromptManager()?.GetScreenPromptList(PromptPosition.LowerLeft)?.Contains(cheatsTagger) == false)
+            //{
+            //    Locator.GetPromptManager().AddScreenPrompt(cheatsTagger, PromptPosition.LowerLeft, true);
+            //}
         }
 
         void Update()
@@ -314,6 +413,12 @@ namespace PacificEngine.OW_CheatsMod
                             Player.health = Player.maxHealth;
                             Player.boostSeconds = Player.maxBoostSeconds;
                             Ship.repair();
+                            break;
+                        case CheatOptions.Eject_Ship:
+                            Ship.eject();
+                            break;
+                        case CheatOptions.Explode_Ship:
+                            Ship.explode();
                             break;
                         case CheatOptions.Toggle_Launch_Codes:
                             Data.launchCodes = !Data.launchCodes;
@@ -512,9 +617,6 @@ namespace PacificEngine.OW_CheatsMod
                         case CheatOptions.Quantum_Moon_Collapse:
                             QuantumMoonHelper.collapse();
                             break;
-                        case CheatOptions.Give_Warp_Core:
-                            Possession.pickUpWarpCore(WarpCoreType.Vessel);
-                            break;
                         case CheatOptions.Give_Warp_Core_Vessel:
                             Possession.pickUpWarpCore(WarpCoreType.Vessel);
                             break;
@@ -627,33 +729,80 @@ namespace PacificEngine.OW_CheatsMod
                             Fog.enabled = !Fog.enabled;
                             ModHelper.Console.WriteLine("CheatsMod: Fog " + Fog.enabled);
                             break;
-                        case CheatOptions.Toggle_Position_Display:
-                            Position.debugPlayerPosition = !Position.debugPlayerPosition;
-                            Position.logFrequency = Position.debugPlayerPosition ? 1000 : 0;
+                        case CheatOptions.Give_Vision_Torch:
+                            Possession.pickUpVisionTorch();
                             break;
-                        case CheatOptions.Toggle_Planet_Position_Display:
-                            Planet.debugPlanetPosition = !Planet.debugPlanetPosition;
-                            Planet.logPlanetPositionFrequency = Planet.debugPlanetPosition ? 1000 : 0;
+                        case CheatOptions.Give_Identify_Conversation_Stone:
+                            Possession.pickUpConversationStone(NomaiWord.Identify);
                             break;
-                        case CheatOptions.Toggle_Bramble_Portal_Display:
-                            BramblePortals.debugMode = !BramblePortals.debugMode;
-                            BramblePortals.logFrequency = BramblePortals.debugMode ? 1000 : 0;
+                        case CheatOptions.Give_Explain_Conversation_Stone:
+                            Possession.pickUpConversationStone(NomaiWord.Explain);
                             break;
-                        case CheatOptions.Toggle_Warp_Pad_Display:
-                            WarpPad.debugMode = !WarpPad.debugMode;
-                            WarpPad.logFrequency = WarpPad.debugMode ? 1000 : 0;
+                        case CheatOptions.Give_Eye_Conversation_Stone:
+                            Possession.pickUpConversationStone(NomaiWord.Eye);
                             break;
-                        case CheatOptions.Log_Fact_Reveals:
-                            Data.debugFacts = !Data.debugFacts;
-                            ModHelper.Console.WriteLine("CheatsMod: Debug Facts " + Data.debugFacts);
+                        case CheatOptions.Give_Quantum_Moon_Conversation_Stone:
+                            Possession.pickUpConversationStone(NomaiWord.QuantumMoon);
                             break;
-                        case CheatOptions.Log_Save_Condition_Changes:
-                            Data.debugPersistentConditions = !Data.debugPersistentConditions;
-                            ModHelper.Console.WriteLine("CheatsMod: Debug Saved Conditions " + Data.debugPersistentConditions);
+                        case CheatOptions.Give_You_Conversation_Stone:
+                            Possession.pickUpConversationStone(NomaiWord.You);
                             break;
-                        case CheatOptions.Log_Dialogue_Condition_Changes:
-                            Data.debugDialogConditions = !Data.debugDialogConditions;
-                            ModHelper.Console.WriteLine("CheatsMod: Debug Dialogue Conditions " + Data.debugDialogConditions);
+                        case CheatOptions.Give_Me_Conversation_Stone:
+                            Possession.pickUpConversationStone(NomaiWord.Me);
+                            break;
+                        case CheatOptions.Give_Nomai_Conversation_Stone:
+                            Possession.pickUpConversationStone(NomaiWord.TheNomai);
+                            break;
+                        case CheatOptions.Give_Sun_Station_Projection_Stone:
+                            Possession.pickUpShareStone(NomaiRemoteCameraPlatform.ID.SunStation);
+                            break;
+                        case CheatOptions.Give_Time_Loop_Projection_Stone:
+                            Possession.pickUpShareStone(NomaiRemoteCameraPlatform.ID.HGT_TimeLoop);
+                            break;
+                        case CheatOptions.Give_Eye_Locator_Projection_Stone:
+                            Possession.pickUpShareStone(NomaiRemoteCameraPlatform.ID.THM_EyeLocator);
+                            break;
+                        case CheatOptions.Give_Mine_Projection_Stone:
+                            Possession.pickUpShareStone(NomaiRemoteCameraPlatform.ID.TH_Mine);
+                            break;
+                        case CheatOptions.Give_Observatory_Projection_Stone:
+                            Possession.pickUpShareStone(NomaiRemoteCameraPlatform.ID.BH_Observatory);
+                            break;
+                        case CheatOptions.Give_Gravity_Cannon_Projection_Stone:
+                            Possession.pickUpShareStone(NomaiRemoteCameraPlatform.ID.BH_GravityCannon);
+                            break;
+                        case CheatOptions.Give_Quantum_Fragment_Projection_Stone:
+                            Possession.pickUpShareStone(NomaiRemoteCameraPlatform.ID.BH_QuantumFragment);
+                            break;
+                        case CheatOptions.Give_Black_Hole_Forge_Projection_Stone:
+                            Possession.pickUpShareStone(NomaiRemoteCameraPlatform.ID.BH_BlackHoleForge);
+                            break;
+                        case CheatOptions.Give_Construction_Yard_1st_Projection_Stone:
+                            Possession.pickUpShareStone(NomaiRemoteCameraPlatform.ID.GD_ConstructionYardIsland1);
+                            break;
+                        case CheatOptions.Give_Construction_Yard_2nd_Projection_Stone:
+                            Possession.pickUpShareStone(NomaiRemoteCameraPlatform.ID.GD_ConstructionYardIsland2);
+                            break;
+                        case CheatOptions.Give_Statue_Projection_Stone:
+                            Possession.pickUpShareStone(NomaiRemoteCameraPlatform.ID.GD_StatueIsland);
+                            break;
+                        case CheatOptions.Give_Tracking_Module_Projection_Stone:
+                            Possession.pickUpShareStone(NomaiRemoteCameraPlatform.ID.GD_ProbeCannonSunkenModule);
+                            break;
+                        case CheatOptions.Give_Launch_Module_Projection_Stone:
+                            Possession.pickUpShareStone(NomaiRemoteCameraPlatform.ID.GD_ProbeCannonDamagedModule);
+                            break;
+                        case CheatOptions.Give_Control_Module_Projection_Stone:
+                            Possession.pickUpShareStone(NomaiRemoteCameraPlatform.ID.GD_ProbeCannonIntactModule);
+                            break;
+                        case CheatOptions.Give_Volcanic_Projection_Stone:
+                            Possession.pickUpShareStone(NomaiRemoteCameraPlatform.ID.VM_Interior);
+                            break;
+                        case CheatOptions.Give_High_Energy_Lab_Projection_Stone:
+                            Possession.pickUpShareStone(NomaiRemoteCameraPlatform.ID.HGT_TLE);
+                            break;
+                        case CheatOptions.Give_North_Pole_Projection_Stone:
+                            Possession.pickUpShareStone(NomaiRemoteCameraPlatform.ID.BH_NorthPole);
                             break;
                         default:
                             ModHelper.Console.WriteLine("CheatsMod: Input not mapped " + input.Item1, MessageType.Warning);
@@ -661,6 +810,28 @@ namespace PacificEngine.OW_CheatsMod
                     }
                 }
             }
+
+            SuperNova.Update();
+            Player.Update();
+            Ship.Update();
+            Anglerfish.Update();
+        }
+
+        public static Sector getSector(Sector.Name name) => getSectors(name).FirstOrDefault();
+
+        public static Sector getSector(Sector.Name name, Func<Sector, bool> predicate) => getSectors(name).FirstOrDefault(predicate);
+
+        public static List<Sector> getSectors(Sector.Name name)
+        {
+            var sectors = new List<Sector>();
+            foreach (Sector sector in SectorManager.GetRegisteredSectors())
+            {
+                if (name.Equals(sector.GetName()))
+                {
+                    sectors.Add(sector);
+                }
+            }
+            return sectors;
         }
 
         private void toggleFacts()
@@ -700,5 +871,41 @@ namespace PacificEngine.OW_CheatsMod
 
             ModHelper.Console.WriteLine("Cheat Mods: All Frequencies " + Data.knowAllFrequencies + " All Signals " + Data.knowAllSignals);
         }
+    }
+
+    internal static class Extensions
+    {
+        public static GameObject InstantiateInactive(this GameObject original)
+        {
+            if (!original.activeSelf)
+            {
+                return UnityEngine.Object.Instantiate(original);
+            }
+
+            original.SetActive(false);
+            var copy = UnityEngine.Object.Instantiate(original);
+            copy.name = original.name;
+            original.SetActive(true);
+            return copy;
+        }
+
+        public static GameObject InstantiateInactive(this GameObject original, Transform parent)
+        {
+            if (!original.activeSelf)
+            {
+                return UnityEngine.Object.Instantiate(original, parent);
+            }
+
+            original.SetActive(false);
+            var copy = UnityEngine.Object.Instantiate(original, parent);
+            copy.name = original.name;
+            original.SetActive(true);
+            return copy;
+        }
+
+        public static T InstantiateInactive<T>(this T original) where T : Component => InstantiateInactive(original.gameObject).GetComponent<T>();
+        public static T InstantiateInactive<T>(this T original, Transform parent) where T : Component => InstantiateInactive(original.gameObject, parent).GetComponent<T>();
+
+        public static void SetActive<T>(this T original, bool value) where T : Component => original.gameObject.SetActive(value);
     }
 }

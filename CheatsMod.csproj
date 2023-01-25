@@ -1,0 +1,39 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+    <LangVersion>default</LangVersion>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+    <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
+    <ProjectView>ProjectFiles</ProjectView>
+    <OuterWildsModsDirectory>$(AppData)\OuterWildsModManager\OWML\Mods</OuterWildsModsDirectory>
+    <Authors>MegaPiggy</Authors>
+    <Copyright>Copyright © $(Authors) 2022</Copyright>
+    <OutputPath>Build</OutputPath>
+    <ModName>$(Authors).$(MSBuildProjectName)</ModName>
+    <AssemblyName>$(MSBuildProjectName)</AssemblyName>
+    <RootNamespace>$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
+    <AssemblyTitle>$(ModName)</AssemblyTitle>
+    <Product>$(ModName)</Product>
+    <AssemblyVersion>0.7.5</AssemblyVersion>
+    <FileVersion>0.7.5</FileVersion>
+    <DebugType>portable</DebugType>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Lib.Harmony" Version="2.2.2" />
+    <PackageReference Include="OWML" Version="2.6.0" />
+    <PackageReference Include="OuterWildsGameLibs" Version="1.1.13.393" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="default-config.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="manifest.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="echo ‎&#xD;&#xA;echo         Transferring files to $(OuterWildsModsDirectory)\$(ModName)&#xD;&#xA;@rmdir /Q /S &quot;$(OuterWildsModsDirectory)\$(ModName)\&quot;&#xD;&#xA;@md &quot;$(OuterWildsModsDirectory)\$(ModName)\&quot;&#xD;&#xA;@copy /y &quot;$(ProjectDir)default-config.json&quot; &quot;$(OuterWildsModsDirectory)\$(ModName)\&quot;&#xD;&#xA;@copy /y &quot;$(ProjectDir)manifest.json&quot; &quot;$(OuterWildsModsDirectory)\$(ModName)\&quot;&#xD;&#xA;@copy /y &quot;$(TargetDir)$(TargetName).pdb&quot; &quot;$(OuterWildsModsDirectory)\$(ModName)\&quot;&#xD;&#xA;@copy /y &quot;$(TargetPath)&quot; &quot;$(OuterWildsModsDirectory)\$(ModName)\&quot;&#xD;&#xA;echo ‎" />
+  </Target>
+</Project>

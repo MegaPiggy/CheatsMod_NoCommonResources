@@ -1,14 +1,14 @@
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/PacificEngine/OW_CheatsMod?style=flat-square)
-![GitHub Release Date](https://img.shields.io/github/release-date/PacificEngine/OW_CheatsMod?label=last%20release&style=flat-square)
-![GitHub all releases](https://img.shields.io/github/downloads/PacificEngine/OW_CheatsMod/total?style=flat-square)
-![GitHub release (latest by date)](https://img.shields.io/github/downloads/PacificEngine/OW_CheatsMod/latest/total?style=flat-square)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/MegaPiggy/OW_CheatsMod?style=flat-square)
+![GitHub Release Date](https://img.shields.io/github/release-date/MegaPiggy/OW_CheatsMod?label=last%20release&style=flat-square)
+![GitHub all releases](https://img.shields.io/github/downloads/MegaPiggy/OW_CheatsMod/total?style=flat-square)
+![GitHub release (latest by date)](https://img.shields.io/github/downloads/MegaPiggy/OW_CheatsMod/latest/total?style=flat-square)
 
 # Cheats Mod by Pacific Engine
 
 ## Installing the Mod
 1) Download and install https://outerwildsmods.com/
-1) From the Application, Install `PacificEngine's Common Resources` by `PacificEngine`
-1) From the Application, Install `Cheats Mod` by `PacificEngine`
+1) From the Application, Install `MegaPiggy's Common Resources` by `MegaPiggy`
+1) From the Application, Install `Cheats Mod` by `MegaPiggy`
 
 ## Using Mod
 Default value for commands
@@ -147,7 +147,7 @@ Default value for commands
 `L` + `3` | Log When Conditions Changes due to Dialogue
 
 ## Customizing Inputs
-Customized inputs can be done under the options menu, but due to a scrolling glitch, it can be more easily done by editing `%AppData%\OuterWildsModManager\OWML\Mods\PacificEngine.CheatsMod\config.json`
+Customized inputs can be done under the options menu, but due to a scrolling glitch, it can be more easily done by editing `%AppData%\OuterWildsModManager\OWML\Mods\MegaPiggy.CheatsMod\config.json`
 * You can add multiple key input combos using `|`.
 * You can add multiple keys to the combo inputs using `,`.
 
@@ -272,7 +272,7 @@ The following options are available for customizing inputs
 * `IMESelected111`
 
 ## Creating Code
-Create a new file called `PacificEngine.OW_CheatsMod.csproj.user`
+Create a new file called `CheatsMod.csproj.user`
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">

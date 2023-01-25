@@ -4,35 +4,35 @@
   "settings": {
     "Invincible": {
       "type": "toggle",
-      "value": false,
+      "value": true,
       "yes": "Enabled",
       "no": "Disabled",
       "title": "Invincible"
     },
     "Unlimited Health": {
       "type": "toggle",
-      "value": false,
+      "value": true,
       "yes": "Enabled",
       "no": "Disabled",
       "title": "Unlimited Health"
     },
     "Unlimited Fuel": {
       "type": "toggle",
-      "value": false,
+      "value": true,
       "yes": "Enabled",
       "no": "Disabled",
       "title": "Unlimited Fuel"
     },
     "Unlimited Oxygen": {
       "type": "toggle",
-      "value": false,
+      "value": true,
       "yes": "Enabled",
       "no": "Disabled",
       "title": "Unlimited Oxygen"
     },
     "Unlimited Boost": {
       "type": "toggle",
-      "value": false,
+      "value": true,
       "yes": "Enabled",
       "no": "Disabled",
       "title": "Unlimited Boost"
@@ -64,12 +64,12 @@
     "Toggle Invinciblity": "C,I",
     "Toggle Spacesuit": "C,G",
     "Toggle Training Suit": "C,Digit1",
-    "Toggle Player Gravity": "C,N",
-    "Toggle Ship Gravity": "C,N",
-    "Toggle Player Collision": "C,N",
-    "Toggle Ship Collision": "C,N",
-    "Toggle Player Fluid Collision": "C,N",
-    "Toggle Ship Fluid Collision": "C,N",
+    "Toggle Player Gravity": "P,G",
+    "Toggle Ship Gravity": "S,G",
+    "Toggle Player Collision": "P,C",
+    "Toggle Ship Collision": "S,C",
+    "Toggle Player Fluid Collision": "P,F",
+    "Toggle Ship Fluid Collision": "S,F",
     "Toggle Unlimited Boost": "C,T",
     "Toggle Unlimited Fuel": "C,Y",
     "Toggle Unlimited Oxygen": "C,O",
@@ -160,13 +160,35 @@
     "Give Slide Rule 3": "G,R,P,Digit9",
     "Give Slide Rule 4": "G,R,P,Digit0",
 
-    "Toggle Position Display": "D,P",
-    "Toggle Planet Position Display": "D,Z",
-    "Toggle Bramble Portal Display": "D,B",
-    "Toggle Warp Pad Display": "D,I",
+    "Give Vision Torch": "G,L,Digit7",
 
-    "Log Fact Reveals": "L,Digit1",
-    "Log Save Condition Changes": "L,Digit2",
-    "Log Dialogue Condition Changes": "L,Digit3"
+    "Give Identify Conversation Stone": "C,Digit2",
+    "Give Explain Conversation Stone": "C,Digit3",
+    "Give Eye Conversation Stone": "C,Digit4",
+    "Give Quantum Moon Conversation Stone": "C,Digit5",
+    "Give You Conversation Stone": "C,Digit6",
+    "Give Me Conversation Stone": "C,Digit7",
+    "Give Nomai Conversation Stone": "C,Digit8",
+
+    "Give Sun Station Projection Stone": "P,S,Digit1",
+    "Give Time Loop Projection Stone": "P,S,Digit2",
+    "Give Eye Locator Projection Stone": "P,S,Digit3",
+    "Give Mine Projection Stone": "P,S,Digit4",
+    "Give Observatory Projection Stone": "P,S,Digit5",
+    "Give Gravity Cannon Projection Stone": "P,S,Digit6",
+    "Give Quantum Fragment Projection Stone": "P,S,Digit7",
+    "Give Black Hole Forge Projection Stone": "P,S,Digit8",
+    "Give Construction Yard 1st Projection Stone": "P,S,Digit9",
+    "Give Construction Yard 2nd Projection Stone": "P,S,Digit0",
+    "Give Statue Projection Stone": "P,S,Numpad1",
+    "Give Tracking Module Projection Stone": "P,S,Numpad2",
+    "Give Launch Module Projection Stone": "P,S,Numpad3",
+    "Give Control Module Projection Stone": "P,S,Numpad4",
+    "Give Volcanic Projection Stone": "P,S,Numpad5",
+    "Give High Energy Lab Projection Stone": "P,S,Numpad6",
+    "Give North Pole Projection Stone": "P,S,Numpad7",
+
+    "Eject Ship": "LeftAlt,Digit1",
+    "Explode Ship": "LeftAlt,Digit2"
   }
 }
