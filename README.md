@@ -6,9 +6,8 @@
 # Cheats Mod by Pacific Engine
 
 ## Installing the Mod
-1) Download and install https://outerwildsmods.com/
-1) From the Application, Install `MegaPiggy's Common Resources` by `MegaPiggy`
-1) From the Application, Install `Cheats Mod` by `MegaPiggy`
+1) Download and install https://outerwildsmods.com/mod-manager/
+2) From the Application, Install `Cheats Mod` by `MegaPiggy`
 
 ## Using Mod
 Default value for commands

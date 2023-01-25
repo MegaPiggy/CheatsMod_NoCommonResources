@@ -56,6 +56,8 @@ namespace CheatsMod.CR
             inverted.Clear();
         }
 
+        public static Transform GetParentBody() => MainClass.Body?.transform ?? Locator.GetAstroObject(AstroObject.Name.Sun)?.transform ?? Locator.GetAstroObject(AstroObject.Name.Eye)?.transform ?? Locator.GetPlayerBody()?.transform;
+
         public static void SetUpStreaming(OWItem item) => SetUpStreaming(item.gameObject);
 
         public static void SetUpStreaming(GameObject obj)
@@ -248,7 +250,7 @@ namespace CheatsMod.CR
             {
                 if (reel.name.Contains(name))
                 {
-                    var newReel = reel.InstantiateInactive((Locator.GetAstroObject(AstroObject.Name.Sun)?.transform ?? Locator.GetAstroObject(AstroObject.Name.Eye)?.transform ?? Locator.GetPlayerBody()?.transform));
+                    var newReel = reel.InstantiateInactive(GetParentBody());
                     if (MainClass.HasQSB) QSBCompatibility.Init(newReel);
                     newReel.SetActive(true);
                     SetVisible(newReel, true);
@@ -357,7 +359,7 @@ namespace CheatsMod.CR
 
         public static SharedStone createShareStone(NomaiRemoteCameraPlatform.ID type)
         {
-            Transform parent = (Locator.GetAstroObject(AstroObject.Name.Sun)?.transform ?? Locator.GetAstroObject(AstroObject.Name.Eye)?.transform ?? Locator.GetPlayerBody()?.transform);
+            Transform parent = GetParentBody();
             foreach (SharedStone stone in Resources.FindObjectsOfTypeAll<SharedStone>())
             {
                 if (stone.GetRemoteCameraID().Equals(type))
@@ -402,7 +404,7 @@ namespace CheatsMod.CR
         {
             foreach (VisionTorchItem torch in Resources.FindObjectsOfTypeAll<VisionTorchItem>())
             {
-                var newTorch = torch.InstantiateInactive((Locator.GetAstroObject(AstroObject.Name.Sun)?.transform ?? Locator.GetAstroObject(AstroObject.Name.Eye)?.transform ?? Locator.GetPlayerBody()?.transform));
+                var newTorch = torch.InstantiateInactive(GetParentBody());
                 if (MainClass.HasQSB) QSBCompatibility.Init(newTorch);
                 newTorch.SetActive(true);
                 SetVisible(newTorch, true);
@@ -420,7 +422,7 @@ namespace CheatsMod.CR
             {
                 if (stone.GetWord().Equals(type))
                 {
-                    var newStone = stone.InstantiateInactive((Locator.GetAstroObject(AstroObject.Name.Sun)?.transform ?? Locator.GetAstroObject(AstroObject.Name.Eye)?.transform ?? Locator.GetPlayerBody()?.transform));
+                    var newStone = stone.InstantiateInactive(GetParentBody());
                     if (MainClass.HasQSB) QSBCompatibility.Init(newStone);
                     newStone.SetActive(true);
                     newStone.Reveal();
@@ -438,7 +440,7 @@ namespace CheatsMod.CR
                 if (lantern.IsInteractable()
                     && (broken == lantern.name.Contains("BROKEN")))
                 {
-                    var newLantern = lantern.InstantiateInactive((Locator.GetAstroObject(AstroObject.Name.Sun)?.transform ?? Locator.GetAstroObject(AstroObject.Name.Eye)?.transform ?? Locator.GetPlayerBody()?.transform));
+                    var newLantern = lantern.InstantiateInactive(GetParentBody());
                     if (MainClass.HasQSB) QSBCompatibility.Init(newLantern);
                     newLantern.SetActive(true);
                     SetVisible(newLantern, true);
@@ -466,7 +468,9 @@ namespace CheatsMod.CR
                         sourceController.enabled = true;
                     }
                     lantern.enabled = true;
-                    var newLantern = lantern.InstantiateInactive(Locator.GetAstroObject(AstroObject.Name.Sun)?.transform ?? Locator.GetAstroObject(AstroObject.Name.Eye)?.transform ?? Locator.GetPlayerBody()?.transform);
+                    var parentBody = GetParentBody();
+                    var parentSector = parentBody.GetComponentInChildren<Sector>();
+                    var newLantern = lantern.InstantiateInactive(parentBody);
                     newLantern.transform.localPosition = Vector3.zero;
                     newLantern.transform.localRotation = Quaternion.identity;
                     newLantern.transform.localScale = Vector3.one;
@@ -479,7 +483,7 @@ namespace CheatsMod.CR
                     }
                     newLantern.SetActive(true);
                     SetVisible(newLantern, true);
-                    newLantern.SetSector(null);
+                    newLantern.SetSector(parentSector);
                     newLantern.enabled = true;
                     DreamLanternController newController = newLantern.GetComponent<DreamLanternController>();
                     if (sourceController != null && newController != null)
@@ -497,10 +501,6 @@ namespace CheatsMod.CR
                                 {
                                     newLantern.enabled = true;
                                     newController.enabled = true;
-                                    newController._flicker.SetSector(null);
-                                    newController._focuserPetalsBaseEulerAngles = sourceController._focuserPetalsBaseEulerAngles;
-                                    newController._concealerRootsBaseScale = sourceController._concealerRootsBaseScale;
-                                    newController._concealerCoversStartPos = sourceController._concealerCoversStartPos;
                                     newController.SetLit(MainClass.Instance.inDreamWorld);
                                     newController.SetFocus(1);
                                     newController.SetConcealed(false);
@@ -530,7 +530,7 @@ namespace CheatsMod.CR
             {
                 if (core.GetWarpCoreType().Equals(type))
                 {
-                    var newCore = core.InstantiateInactive((Locator.GetAstroObject(AstroObject.Name.Sun)?.transform ?? Locator.GetAstroObject(AstroObject.Name.Eye)?.transform ?? Locator.GetPlayerBody()?.transform));
+                    var newCore = core.InstantiateInactive(GetParentBody());
                     if (MainClass.HasQSB) QSBCompatibility.Init(newCore);
                     newCore.SetActive(true);
                     SetVisible(newCore, true);
