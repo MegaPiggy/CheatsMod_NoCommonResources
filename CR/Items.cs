@@ -249,6 +249,7 @@ namespace CheatsMod.CR
                 if (reel.name.Contains(name))
                 {
                     var newReel = reel.InstantiateInactive((Locator.GetAstroObject(AstroObject.Name.Sun)?.transform ?? Locator.GetAstroObject(AstroObject.Name.Eye)?.transform ?? Locator.GetPlayerBody()?.transform));
+                    if (MainClass.HasQSB) QSBCompatibility.Init(newReel);
                     newReel.SetActive(true);
                     SetVisible(newReel, true);
                     if (invert)
@@ -362,6 +363,7 @@ namespace CheatsMod.CR
                 if (stone.GetRemoteCameraID().Equals(type))
                 {
                     var newStone = stone.InstantiateInactive(parent);
+                    if (MainClass.HasQSB) QSBCompatibility.Init(newStone);
                     newStone.SetActive(true);
                     SetVisible(newStone, true);
                     SetUpStreaming(newStone);
@@ -390,6 +392,7 @@ namespace CheatsMod.CR
             {
                 GameObject.Instantiate(renderer.gameObject, animRoot.transform);
             }
+            if (MainClass.HasQSB) QSBCompatibility.Init(item);
             fallbackStone.SetActive(true);
             SetUpStreaming(fallbackStone);
             return item;
@@ -400,6 +403,7 @@ namespace CheatsMod.CR
             foreach (VisionTorchItem torch in Resources.FindObjectsOfTypeAll<VisionTorchItem>())
             {
                 var newTorch = torch.InstantiateInactive((Locator.GetAstroObject(AstroObject.Name.Sun)?.transform ?? Locator.GetAstroObject(AstroObject.Name.Eye)?.transform ?? Locator.GetPlayerBody()?.transform));
+                if (MainClass.HasQSB) QSBCompatibility.Init(newTorch);
                 newTorch.SetActive(true);
                 SetVisible(newTorch, true);
                 foreach (Behaviour behaviour in newTorch.GetComponentsInChildren<Behaviour>())
@@ -417,6 +421,7 @@ namespace CheatsMod.CR
                 if (stone.GetWord().Equals(type))
                 {
                     var newStone = stone.InstantiateInactive((Locator.GetAstroObject(AstroObject.Name.Sun)?.transform ?? Locator.GetAstroObject(AstroObject.Name.Eye)?.transform ?? Locator.GetPlayerBody()?.transform));
+                    if (MainClass.HasQSB) QSBCompatibility.Init(newStone);
                     newStone.SetActive(true);
                     newStone.Reveal();
                     SetUpStreaming(newStone);
@@ -434,6 +439,7 @@ namespace CheatsMod.CR
                     && (broken == lantern.name.Contains("BROKEN")))
                 {
                     var newLantern = lantern.InstantiateInactive((Locator.GetAstroObject(AstroObject.Name.Sun)?.transform ?? Locator.GetAstroObject(AstroObject.Name.Eye)?.transform ?? Locator.GetPlayerBody()?.transform));
+                    if (MainClass.HasQSB) QSBCompatibility.Init(newLantern);
                     newLantern.SetActive(true);
                     SetVisible(newLantern, true);
                     lantern._startsLit = lit;
@@ -466,6 +472,11 @@ namespace CheatsMod.CR
                     newLantern.transform.localScale = Vector3.one;
                     Vector3 lossy = newLantern.transform.lossyScale;
                     newLantern.transform.localScale = new Vector3(1 / lossy.x, 1 / lossy.y, 1 / lossy.z);
+                    if (MainClass.HasQSB)
+                    {
+                        QSBCompatibility.Init(newLantern);
+                        QSBCompatibility.Init(newLantern.GetComponent<DreamLanternController>());
+                    }
                     newLantern.SetActive(true);
                     SetVisible(newLantern, true);
                     newLantern.SetSector(null);
@@ -520,6 +531,7 @@ namespace CheatsMod.CR
                 if (core.GetWarpCoreType().Equals(type))
                 {
                     var newCore = core.InstantiateInactive((Locator.GetAstroObject(AstroObject.Name.Sun)?.transform ?? Locator.GetAstroObject(AstroObject.Name.Eye)?.transform ?? Locator.GetPlayerBody()?.transform));
+                    if (MainClass.HasQSB) QSBCompatibility.Init(newCore);
                     newCore.SetActive(true);
                     SetVisible(newCore, true);
                     SetUpStreaming(newCore);

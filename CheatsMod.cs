@@ -160,6 +160,7 @@ namespace CheatsMod
 
         private static MainClass instance;
         public static MainClass Instance => instance;
+        public static bool HasQSB = false;
         public static IModHelper ModHelperInstance => instance.ModHelper;
         public static IModConsole Console => instance.ModHelper.Console;
         public static IHarmonyHelper HarmonyHelper => instance.ModHelper.HarmonyHelper;
@@ -171,11 +172,16 @@ namespace CheatsMod
 
         void Start()
         {
+            HasQSB = ModHelper.Interaction.ModExists("Raicuparta.QuantumSpaceBuddies");
             //Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly());
             ModHelper.Events.Player.OnPlayerAwake += (player) => onAwake();
             ModHelper.HarmonyHelper.AddPrefix(AccessTools.Method(typeof(OWExtensions), "GetAttachedOWRigidbody", new Type[2] { typeof(Component), typeof(bool) }), typeof(MainClass), nameof(OWExtensions_GetAttachedOWRigidbody));
             ModHelper.HarmonyHelper.AddPrefix<HighSpeedImpactSensor>("FixedUpdate", typeof(MainClass), nameof(HighSpeedImpactSensor_FixedUpdate));
             ModHelper.HarmonyHelper.AddPrefix<PlayerResources>("OnImpact", typeof(MainClass), nameof(PlayerResources_OnImpact));
+            if (HasQSB)
+            {
+                QSBCompatibility.DoPatches();
+            }
             ModHelper.Console.WriteLine("CheatMods ready!");
             Position.Awake();
             Items.Awake();

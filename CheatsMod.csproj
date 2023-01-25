@@ -33,6 +33,11 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <Reference Include="QSB">
+      <HintPath>..\..\..\Desktop\AssemblyPublicizer\publicized_assemblies\QSB.dll</HintPath>
+    </Reference>
+  </ItemGroup>
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
     <Exec Command="echo ‎&#xD;&#xA;echo         Transferring files to $(OuterWildsModsDirectory)\$(ModName)&#xD;&#xA;@rmdir /Q /S &quot;$(OuterWildsModsDirectory)\$(ModName)\&quot;&#xD;&#xA;@md &quot;$(OuterWildsModsDirectory)\$(ModName)\&quot;&#xD;&#xA;@copy /y &quot;$(ProjectDir)default-config.json&quot; &quot;$(OuterWildsModsDirectory)\$(ModName)\&quot;&#xD;&#xA;@copy /y &quot;$(ProjectDir)manifest.json&quot; &quot;$(OuterWildsModsDirectory)\$(ModName)\&quot;&#xD;&#xA;@copy /y &quot;$(TargetDir)$(TargetName).pdb&quot; &quot;$(OuterWildsModsDirectory)\$(ModName)\&quot;&#xD;&#xA;@copy /y &quot;$(TargetPath)&quot; &quot;$(OuterWildsModsDirectory)\$(ModName)\&quot;&#xD;&#xA;echo ‎" />
   </Target>

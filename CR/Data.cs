@@ -1,4 +1,4 @@
-﻿using OWML.Common;
+using OWML.Common;
 using OWML.ModHelper;
 using OWML.Utils;
 using System;
@@ -204,7 +204,7 @@ namespace CheatsMod.CR
             MainClass.Console.WriteLine($"learnFacts(learn: {learn}, notifyPlayer: {notifyPlayer}, factIds: {{{string.Join(", ", factIds)}}})", MessageType.Info);
             foreach (var fact in factIds)
             {
-                if (learn)
+                if (learn || MainClass.HasQSB)
                 {
                     Locator.GetShipLogManager().RevealFact(fact, false, notifyPlayer);
                 }
