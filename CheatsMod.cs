@@ -160,6 +160,8 @@ namespace CheatsMod
 
         private static MainClass instance;
         public static MainClass Instance => instance;
+        private static GameObject body;
+        public static GameObject Body => body;
         public static IModHelper ModHelperInstance => instance.ModHelper;
         public static IModConsole Console => instance.ModHelper.Console;
         public static IHarmonyHelper HarmonyHelper => instance.ModHelper.HarmonyHelper;
@@ -187,6 +189,9 @@ namespace CheatsMod
             SceneManager.sceneUnloaded += (s) => OnExitDreamWorld();
             GlobalMessenger.AddListener("EnterDreamWorld", OnEnterDreamWorld);
             GlobalMessenger.AddListener("ExitDreamWorld", OnExitDreamWorld);
+            body = new GameObject("CheatsMod_Body", typeof(OWRigidbody));
+            new GameObject("Sector_CheatsMod", typeof(Sector)).transform.SetParent(body.transform);
+            GameObject.DontDestroyOnLoad(Body);
         }
 
         void Destory()
