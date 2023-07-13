@@ -24,31 +24,23 @@ namespace CheatsMod
         Toggle_Rumors,
         Teleport_To_Sun,
         Teleport_To_SunStation,
-        Teleport_To_EmberTwin = 7,
-        Teleport_To_CaveTwin = 7,
-        Teleport_To_AshTwin = 8,
-        Teleport_To_TowerTwin = 8,
+        Teleport_To_EmberTwin,
+        Teleport_To_AshTwin,
         Teleport_To_AshTwinProject,
         Teleport_To_TimberHearth,
-        Teleport_To_TimberHearth_Probe = 11,
-        Teleport_To_TimberHearth_Satellite = 11,
-        Teleport_To_TimberHearth_Moon = 12,
-        Teleport_To_Attlerock = 12,
-        Teleport_To_BrittleHollow = 13,
-        Teleport_To_BrittleHollow_Moon = 14,
-        Teleport_To_HollowLattern = 14,
+        Teleport_To_SkyShutterSatellite,
+        Teleport_To_Attlerock,
+        Teleport_To_BrittleHollow,
+        Teleport_To_HollowsLantern,
         Teleport_To_GiantsDeep,
         Teleport_To_ProbeCannon,
         Teleport_To_ProbeCannonCommandModule,
         Teleport_To_DarkBramble,
         Teleport_To_Vessel,
-        Teleport_To_Interloper = 20,
-        Teleport_To_Comet = 20,
+        Teleport_To_Interloper,
         Teleport_To_WhiteHole,
-        Teleport_To_WhiteHoleStation = 22,
-        Teleport_To_WhiteHoleTarget = 22,
-        Teleport_To_Stranger = 23,
-        Teleport_To_RingWorld = 23,
+        Teleport_To_WhiteHoleStation,
+        Teleport_To_Stranger,
         Teleport_To_DreamWorld,
         Teleport_To_QuantumMoon,
         Teleport_To_Ship,
@@ -273,12 +265,12 @@ namespace CheatsMod
             inputs.addInput(config, CheatOptions.Teleport_To_TimberHearth, "T,Digit5");
             inputs.addInput(config, CheatOptions.Teleport_To_Attlerock, "T,Digit6");
             inputs.addInput(config, CheatOptions.Teleport_To_BrittleHollow, "T,Digit7");
-            inputs.addInput(config, CheatOptions.Teleport_To_HollowLattern, "T,Digit8");
+            inputs.addInput(config, CheatOptions.Teleport_To_HollowsLantern, "T,Digit8");
             inputs.addInput(config, CheatOptions.Teleport_To_GiantsDeep, "T,Digit9");
             inputs.addInput(config, CheatOptions.Teleport_To_DarkBramble, "T,Digit0");
 
             inputs.addInput(config, CheatOptions.Teleport_To_Interloper, "T,Numpad0");
-            inputs.addInput(config, CheatOptions.Teleport_To_TimberHearth_Probe, "T,Numpad1");
+            inputs.addInput(config, CheatOptions.Teleport_To_SkyShutterSatellite, "T,Numpad1");
             inputs.addInput(config, CheatOptions.Teleport_To_ProbeCannon, "T,Numpad2");
             inputs.addInput(config, CheatOptions.Teleport_To_WhiteHole, "T,Numpad3");
             inputs.addInput(config, CheatOptions.Teleport_To_WhiteHoleStation, "T,Numpad4");
@@ -377,7 +369,7 @@ namespace CheatsMod
             inputs.addInput(config, CheatOptions.Give_Control_Module_Projection_Stone, "P,S,Numpad4");
             inputs.addInput(config, CheatOptions.Give_Volcanic_Projection_Stone, "P,S,Numpad5");
             inputs.addInput(config, CheatOptions.Give_High_Energy_Lab_Projection_Stone, "P,S,Numpad6");
-            inputs.addInput(config, CheatOptions.Give_North_Pole_Projection_Stone, "P,S,S,Numpad7");
+            inputs.addInput(config, CheatOptions.Give_North_Pole_Projection_Stone, "P,S,Numpad7");
 
             inputs.addInput(config, CheatOptions.Eject_Ship, "LeftAlt,Digit1");
             inputs.addInput(config, CheatOptions.Explode_Ship, "LeftAlt,Digit2");
@@ -475,8 +467,8 @@ namespace CheatsMod
                         case CheatOptions.Teleport_To_TimberHearth:
                             Teleportation.teleportPlayerToTimberHearth();
                             break;
-                        case CheatOptions.Teleport_To_TimberHearth_Probe:
-                            Teleportation.teleportPlayerToTimberHearthProbe();
+                        case CheatOptions.Teleport_To_SkyShutterSatellite:
+                            Teleportation.teleportPlayerToSkyShutterSatellite();
                             break;
                         case CheatOptions.Teleport_To_Attlerock:
                             Teleportation.teleportPlayerToAttlerock();
@@ -484,8 +476,8 @@ namespace CheatsMod
                         case CheatOptions.Teleport_To_BrittleHollow:
                             Teleportation.teleportPlayerToBlackHoleForgeTeleporter();
                             break;
-                        case CheatOptions.Teleport_To_HollowLattern:
-                            Teleportation.teleportPlayerToHollowLattern();
+                        case CheatOptions.Teleport_To_HollowsLantern:
+                            Teleportation.teleportPlayerToHollowsLantern();
                             break;
                         case CheatOptions.Teleport_To_GiantsDeep:
                             Teleportation.teleportPlayerToGiantsDeep();

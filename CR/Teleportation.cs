@@ -86,9 +86,9 @@ namespace CheatsMod.CR
             }
         }
 
-        public static void teleportPlayerToTimberHearthProbe()
+        public static void teleportPlayerToSkyShutterSatellite()
         {
-            var parent = Position.getBody(HeavenlyBodies.TimberHearthProbe);
+            var parent = Position.getBody(HeavenlyBodies.SkyShutterSatellite);
             if (Locator.GetPlayerBody() && parent)
             {
                 ignoreSand(false);
@@ -125,9 +125,9 @@ namespace CheatsMod.CR
             }
         }
 
-        public static void teleportPlayerToHollowLattern()
+        public static void teleportPlayerToHollowsLantern()
         {
-            var parent = Position.getBody(HeavenlyBodies.HollowLantern);
+            var parent = Position.getBody(HeavenlyBodies.HollowsLantern);
             if (Locator.GetPlayerBody() && parent)
             {
                 ignoreSand(false);

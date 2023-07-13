@@ -50,7 +50,17 @@ Default value for commands
 `V` + `-` | Decrease Supernova Timer
 `V` + `+` | Increase Supernova Timer
 `F` + `O` + `G` | Toggle Fog
+
+### Quantum Moon
+| Key | Description |
+| :-: | --- |
 `Q` + `0` | Change Quantum Moon Position
+`Q` + `1` | Set Quantum Moon to Ember Twin
+`Q` + `2` | Set Quantum Moon to Timber Hearth
+`Q` + `3` | Set Quantum Moon to Brittle Hollow
+`Q` + `4` | Set Quantum Moon to Giant's Deep
+`Q` + `5` | Set Quantum Moon to Dark Bramble
+`Q` + `6` | Set Quantum Moon to Eye
 
 ### Player Acceleration
 | Key | Description |
@@ -69,10 +79,10 @@ Default value for commands
 `T` + `4` | Teleport to Ash Twin's North Pole
 `T` + Numpad `8` | Teleport to Ash Twin Project
 `T` + `5` | Teleport to Timber Hearth Near 
-`T` + Numpad `1` | Teleport to Timber Hearth Probe
+`T` + Numpad `1` | Teleport to Sky Shutter Satellite (Timber Hearth Probe)
 `T` + `6` | Teleport to Attlerock's Observation Platform
 `T` + `7` | Teleport to Brittle Hollow's Blackhole Forge
-`T` + `8` | Teleport to Holow Lantern's Project Platform
+`T` + `8` | Teleport to Hollow's Lantern's Project Platform
 `T` + `9` | Teleport to Giant's Deep Quantum Tower
 `T` + Numpad `2` | Teleport to Giant's Deep Probe Cannon
 `T` + Numpad `.` | Teleport to Giant's Deep Probe Cannon's Command Module
@@ -91,10 +101,15 @@ Default value for commands
 `T` + `M` | Teleport To Mapping Satellite
 `T` + `B` | Teleport To Backer Satellite
 
+### Triggers
+| Key | Description |
+| :-: | --- |
+Left `Alt` + `1` | Eject Ship
+Left `Alt` + `2` | Explode Ship
+
 ### Giving Items
 | Key | Description |
 | :-: | --- |
-`G` + `W` | Give Player Warp Core (Vessel)
 `G` + `T` + `1` | Give Player Warp Core (Vessel)
 `G` + `T` + `2` | Give Player Warp Core (Broken)
 `G` + `T` + `3` | Give Player Warp Core (Simple Black)
@@ -105,6 +120,8 @@ Default value for commands
 `G` + `L` + `3` | Give Player Generation 1 Lantern (Unlit)
 `G` + `L` + `4` | Give Player Generation 2 Lantern (Lit)
 `G` + `L` + `5` | Give Player Generation 3 Lantern (Lit)
+`G` + `L` + `6` | Give Player Invalid Lantern
+`G` + `L` + `7` | Give Player Vision Torch
 `G` + `R` + `S` + `1` | Give Story 1 Slide Reel
 `G` + `R` + `S` + `2` | Give Story 2 Slide Reel
 `G` + `R` + `S` + `3` | Give Story 3 Slide Reel
@@ -129,21 +146,30 @@ Default value for commands
 `G` + `R` + `P` + `8` | Give Dream Rule 2 v1 Slide Reel
 `G` + `R` + `P` + `9` | Give Dream Rule 2 v2 Slide Reel
 `G` + `R` + `P` + `0` | Give Dream Rule 3 Slide Reel
-
-### Debugging
-| Key | Description |
-| :-: | --- |
-`D` + `P` | Toggle Display of Player/Ship/Probe Coordinates
-`D` + `Z` | Toggle Display of Planet Coordinates
-`D` + `B` | Toggle Display of Bramble Portal Mapping
-`D` + `I` | Toggle Display of Warp Pad Mapping
-
-### Detailed Logging
-| Key | Description |
-| :-: | --- |
-`L` + `1` | Log When New Facts Are Revealed
-`L` + `2` | Log When Conditions Changes on the Save File
-`L` + `3` | Log When Conditions Changes due to Dialogue
+`C` + `2` | Give Identify Conversation Stone
+`C` + `3` | Give Explain Conversation Stone
+`C` + `4` | Give Eye Conversation Stone
+`C` + `5` | Give Quantum Moon Conversation Stone
+`C` + `6` | Give You Conversation Stone
+`C` + `7` | Give Me Conversation Stone
+`C` + `8` | Give Nomai Conversation Stone
+`P` + `S` + `1` | Give Sun Station Projection Stone
+`P` + `S` + `2` | Give Ash Twin Project Projection Stone
+`P` + `S` + `3` | Give Attlerock Eye Locator Projection Stone
+`P` + `S` + `4` | Give Timber Hearth Mine Projection Stone
+`P` + `S` + `5` | Give Brittle Hollow Observatory Projection Stone
+`P` + `S` + `6` | Give Brittle Hollow Gravity Cannon Projection Stone
+`P` + `S` + `7` | Give Brittle Hollow Quantum Fragment Projection Stone
+`P` + `S` + `8` | Give Black Hole Forge Projection Stone
+`P` + `S` + `9` | Give Construction Yard 1st Projection Stone
+`P` + `S` + `0` | Give Construction Yard 2nd Projection Stone
+`P` + `S` + Numpad `1` | Give Statue Island Projection Stone
+`P` + `S` + Numpad `2` | Give Tracking Module Projection Stone
+`P` + `S` + Numpad `3` | Give Launch Module Projection Stone
+`P` + `S` + Numpad `4` | Give Control Module Projection Stone
+`P` + `S` + Numpad `5` | Give Volcanic Projection Stone
+`P` + `S` + Numpad `6` | Give High Energy Lab Projection Stone
+`P` + `S` + Numpad `7` | Give Brittle Hollow North Pole Projection Stone
 
 ## Customizing Inputs
 Customized inputs can be done under the options menu, but due to a scrolling glitch, it can be more easily done by editing `%AppData%\OuterWildsModManager\OWML\Mods\MegaPiggy.CheatsMod\config.json`

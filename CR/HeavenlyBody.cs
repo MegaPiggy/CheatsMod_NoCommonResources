@@ -157,10 +157,10 @@ namespace CheatsMod.CR
         public static HeavenlyBody AshTwin = new HeavenlyBody($"{prefix}Ash_Twin");
         public static HeavenlyBody EmberTwin = new HeavenlyBody($"{prefix}Ember_Twin");
         public static HeavenlyBody TimberHearth = new HeavenlyBody($"{prefix}Timber_Hearth");
-        public static HeavenlyBody TimberHearthProbe = new HeavenlyBody($"{prefix}Timber_Hearth_Probe");
+        public static HeavenlyBody SkyShutterSatellite = new HeavenlyBody($"{prefix}Sky_Shutter_Satellite");
         public static HeavenlyBody Attlerock = new HeavenlyBody($"{prefix}Attlerock");
         public static HeavenlyBody BrittleHollow = new HeavenlyBody($"{prefix}Brittle_Hollow");
-        public static HeavenlyBody HollowLantern = new HeavenlyBody($"{prefix}Hollow_Lantern");
+        public static HeavenlyBody HollowsLantern = new HeavenlyBody($"{prefix}Hollows_Lantern");
         public static HeavenlyBody GiantsDeep = new HeavenlyBody($"{prefix}Giants_Deep");
         public static HeavenlyBody ProbeCannon = new HeavenlyBody($"{prefix}Probe_Cannon");
         public static HeavenlyBody NomaiProbe = new HeavenlyBody($"{prefix}Nomai_Probe");

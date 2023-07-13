@@ -103,7 +103,6 @@ namespace CheatsMod.CR
 
         public static SlideReelItem createSlideReel(SlideReelStory type, bool burned)
         {
-
             var burnS = burned ? "Burned" : "Complete";
             String name;
             String container;
