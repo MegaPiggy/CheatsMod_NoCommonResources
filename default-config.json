@@ -87,7 +87,14 @@
     "Toggle Supernova Timer": "V,Digit0",
     "Decrease Supernova Timer": "V,Minus",
     "Increase Supernova Timer": "V,Equals",
+
     "Quantum Moon Collapse": "Q,Digit0",
+    "Quantum Moon EmberTwin": "Q,Digit1",
+    "Quantum Moon TimberHearth": "Q,Digit2",
+    "Quantum Moon BrittleHollow": "Q,Digit3",
+    "Quantum Moon GiantsDeep": "Q,Digit4",
+    "Quantum Moon DarkBramble": "Q,Digit5",
+    "Quantum Moon Eye": "Q,Digit6",
 
     "Increase Jetpack Acceleration": "P,Equals",
     "Decrease Jetpack Acceleration": "P,Minus",

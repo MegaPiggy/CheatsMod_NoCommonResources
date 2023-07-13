@@ -79,6 +79,12 @@ namespace CheatsMod
         Decrease_Supernova_Timer,
         Increase_Supernova_Timer,
         Quantum_Moon_Collapse,
+        Quantum_Moon_EmberTwin,
+        Quantum_Moon_TimberHearth,
+        Quantum_Moon_BrittleHollow,
+        Quantum_Moon_GiantsDeep,
+        Quantum_Moon_DarkBramble,
+        Quantum_Moon_Eye,
         Decrease_Jetpack_Acceleration,
         Increase_Jetpack_Acceleration,
         Decrease_Ship_Acceleration,
@@ -185,13 +191,19 @@ namespace CheatsMod
             Fog.Start();
             Anglerfish.Start();
             Inhabitants.Start();
-            SceneManager.sceneLoaded += (s,l) => OnExitDreamWorld();
+            SceneManager.sceneLoaded += (s, l) => OnExitDreamWorld();
             SceneManager.sceneUnloaded += (s) => OnExitDreamWorld();
             GlobalMessenger.AddListener("EnterDreamWorld", OnEnterDreamWorld);
             GlobalMessenger.AddListener("ExitDreamWorld", OnExitDreamWorld);
             body = new GameObject("CheatsMod_Body", typeof(OWRigidbody));
-            new GameObject("Sector_CheatsMod", typeof(Sector)).transform.SetParent(body.transform);
-            GameObject.DontDestroyOnLoad(Body);
+            var sectorObj = new GameObject("Sector_CheatsMod");
+            sectorObj.SetActive(false);
+            sectorObj.transform.SetParent(body.transform);
+            var sector = sectorObj.AddComponent<Sector>();
+            sector._name = Sector.Name.Unnamed;
+            sector._subsectors = new List<Sector>();
+            sectorObj.SetActive(true);
+            GameObject.DontDestroyOnLoad(body);
         }
 
         void Destory()
@@ -204,7 +216,7 @@ namespace CheatsMod
 
         public static bool OWExtensions_GetAttachedOWRigidbody(ref OWRigidbody __result, Component cmpt)
         {
-            if (cmpt == null || cmpt.gameObject == null|| cmpt.transform == null)
+            if (cmpt == null || cmpt.gameObject == null || cmpt.transform == null)
             {
                 __result = null;
                 return false;
@@ -292,6 +304,12 @@ namespace CheatsMod
             inputs.addInput(config, CheatOptions.Increase_Supernova_Timer, "V,Equals");
 
             inputs.addInput(config, CheatOptions.Quantum_Moon_Collapse, "Q,Digit0");
+            inputs.addInput(config, CheatOptions.Quantum_Moon_EmberTwin, "Q,Digit1");
+            inputs.addInput(config, CheatOptions.Quantum_Moon_TimberHearth, "Q,Digit2");
+            inputs.addInput(config, CheatOptions.Quantum_Moon_BrittleHollow, "Q,Digit3");
+            inputs.addInput(config, CheatOptions.Quantum_Moon_GiantsDeep, "Q,Digit4");
+            inputs.addInput(config, CheatOptions.Quantum_Moon_DarkBramble, "Q,Digit5");
+            inputs.addInput(config, CheatOptions.Quantum_Moon_Eye, "Q,Digit6");
             inputs.addInput(config, CheatOptions.Decrease_Jetpack_Acceleration, "P,Minus");
             inputs.addInput(config, CheatOptions.Increase_Jetpack_Acceleration, "P,Equals");
             inputs.addInput(config, CheatOptions.Decrease_Ship_Acceleration, "O,Minus");
@@ -384,11 +402,11 @@ namespace CheatsMod
             ModHelper.Console.WriteLine("CheatMods: Player Awakes");
             Position.Awake();
             Items.Awake();
-            foreach (ThrustRuleset thrustRuleset in GameObject.FindObjectsOfType<ThrustRuleset>())
-            {
-                thrustRuleset._thrustLimit *= 100;
-            }
-            GameObject.DontDestroyOnLoad(new GameObject("LudicrousSpeed", typeof(LudicrousSpeed)));
+            //foreach (ThrustRuleset thrustRuleset in GameObject.FindObjectsOfType<ThrustRuleset>())
+            //{
+            //    thrustRuleset._thrustLimit *= 100;
+            //}
+            //GameObject.DontDestroyOnLoad(new GameObject("LudicrousSpeed", typeof(LudicrousSpeed)));
         }
 
         void OnGUI()
@@ -410,7 +428,7 @@ namespace CheatsMod
 
                 foreach (var input in currentFrame)
                 {
-                    switch(input.Item1)
+                    switch (input.Item1)
                     {
                         case CheatOptions.Fill_Fuel_and_Health:
                             Player.oxygenSeconds = Player.maxOxygenSeconds;
@@ -621,6 +639,24 @@ namespace CheatsMod
                             break;
                         case CheatOptions.Quantum_Moon_Collapse:
                             QuantumMoonHelper.collapse();
+                            break;
+                        case CheatOptions.Quantum_Moon_EmberTwin:
+                            QuantumMoonHelper.setState(AstroObject.Name.HourglassTwins);
+                            break;
+                        case CheatOptions.Quantum_Moon_TimberHearth:
+                            QuantumMoonHelper.setState(AstroObject.Name.TimberHearth);
+                            break;
+                        case CheatOptions.Quantum_Moon_BrittleHollow:
+                            QuantumMoonHelper.setState(AstroObject.Name.BrittleHollow);
+                            break;
+                        case CheatOptions.Quantum_Moon_GiantsDeep:
+                            QuantumMoonHelper.setState(AstroObject.Name.GiantsDeep);
+                            break;
+                        case CheatOptions.Quantum_Moon_DarkBramble:
+                            QuantumMoonHelper.setState(AstroObject.Name.DarkBramble);
+                            break;
+                        case CheatOptions.Quantum_Moon_Eye:
+                            QuantumMoonHelper.setState(AstroObject.Name.Eye);
                             break;
                         case CheatOptions.Give_Warp_Core_Vessel:
                             Possession.pickUpWarpCore(WarpCoreType.Vessel);
