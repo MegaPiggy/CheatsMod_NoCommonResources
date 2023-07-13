@@ -128,7 +128,6 @@
     "Teleport To Mapping Satellite": "T,M",
     "Teleport To Backer Satellite": "T,B",
 
-    "Give Warp Core": "G,W",
     "Give Warp Core Vessel": "G,T,Digit1",
     "Give Warp Core Broken": "G,T,Digit2",
     "Give Warp Core Black": "G,T,Digit3",
