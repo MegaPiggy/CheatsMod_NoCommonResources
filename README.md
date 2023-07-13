@@ -1,9 +1,16 @@
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/MegaPiggy/OW_CheatsMod?style=flat-square)
-![GitHub Release Date](https://img.shields.io/github/release-date/MegaPiggy/OW_CheatsMod?label=last%20release&style=flat-square)
-![GitHub all releases](https://img.shields.io/github/downloads/MegaPiggy/OW_CheatsMod/total?style=flat-square)
-![GitHub release (latest by date)](https://img.shields.io/github/downloads/MegaPiggy/OW_CheatsMod/latest/total?style=flat-square)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/MegaPiggy/CheatsMod_NoCommonResources?style=flat-square)
+![GitHub Release Date](https://img.shields.io/github/release-date/MegaPiggy/CheatsMod_NoCommonResources?label=last%20release&style=flat-square)
+![GitHub all releases](https://img.shields.io/github/downloads/MegaPiggy/CheatsMod_NoCommonResources/total?style=flat-square)
+![GitHub release (latest by date)](https://img.shields.io/github/downloads/MegaPiggy/CheatsMod_NoCommonResources/latest/total?style=flat-square)
 
-# Cheats Mod by Pacific Engine
+# Cheats Mod by MegaPiggy
+Fork of [Pacific Engine's Cheats Mod](https://github.com/PacificEngine/OW_CheatsMod).
+
+This fork gets rid of the dependency on [Pacific Engine's Common Resources](https://github.com/PacificEngine/OW_CommonResources).
+
+![No Cr](no-cr.png)
+
+It also fixes a few bugs that were in the original mod and adds more cheats.
 
 ## Installing the Mod
 1) Download and install https://outerwildsmods.com/mod-manager/
@@ -295,15 +302,3 @@ The following options are available for customizing inputs
 * `OEM4`
 * `OEM5`
 * `IMESelected111`
-
-## Creating Code
-Create a new file called `CheatsMod.csproj.user`
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <PropertyGroup>
-    <OuterWildsRootDirectory>$(OuterWildsDir)\Outer Wilds</OuterWildsRootDirectory>
-    <OuterWildsModsDirectory>%AppData%\OuterWildsModManager\OWML\Mods</OuterWildsModsDirectory>
-  </PropertyGroup>
-</Project>
-```
