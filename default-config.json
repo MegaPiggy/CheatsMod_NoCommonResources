@@ -145,7 +145,7 @@
     "Give Lantern Gen1": "G,L,Digit3",
     "Give Lantern Gen2": "G,L,Digit4",
     "Give Lantern Gen3": "G,L,Digit5",
-    "Give Lantern Invalid": "G,L,Digit6",
+    "Give Vision Torch": "G,L,Digit6",
     "Give Slide Story 1": "G,R,S,Digit1",
     "Give Slide Story 2": "G,R,S,Digit2",
     "Give Slide Story 3": "G,R,S,Digit3",
@@ -171,8 +171,6 @@
     "Give Slide Rule 2": "G,R,P,Digit8",
     "Give Slide Rule 3": "G,R,P,Digit9",
     "Give Slide Rule 4": "G,R,P,Digit0",
-
-    "Give Vision Torch": "G,L,Digit7",
 
     "Give Identify Conversation Stone": "C,Digit2",
     "Give Explain Conversation Stone": "C,Digit3",

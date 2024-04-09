@@ -320,7 +320,7 @@ namespace CheatsMod
             inputs.addInput(config, CheatOptions.Give_Lantern_Gen1, "G,L,Digit3");
             inputs.addInput(config, CheatOptions.Give_Lantern_Gen2, "G,L,Digit4");
             inputs.addInput(config, CheatOptions.Give_Lantern_Gen3, "G,L,Digit5");
-            inputs.addInput(config, CheatOptions.Give_Lantern_Invalid, "G,L,Digit6");
+            inputs.addInput(config, CheatOptions.Give_Vision_Torch, "G,L,Digit6");
             inputs.addInput(config, CheatOptions.Give_Slide_Story_1, "G,R,S,Digit1");
             inputs.addInput(config, CheatOptions.Give_Slide_Story_2, "G,R,S,Digit2");
             inputs.addInput(config, CheatOptions.Give_Slide_Story_3, "G,R,S,Digit3");
@@ -345,8 +345,6 @@ namespace CheatsMod
             inputs.addInput(config, CheatOptions.Give_Slide_Rule_2, "G,R,P,Digit8");
             inputs.addInput(config, CheatOptions.Give_Slide_Rule_3, "G,R,P,Digit9");
             inputs.addInput(config, CheatOptions.Give_Slide_Rule_4, "G,R,P,Digit0");
-
-            inputs.addInput(config, CheatOptions.Give_Vision_Torch, "G,L,Digit7");
 
             inputs.addInput(config, CheatOptions.Give_Identify_Conversation_Stone, "C,Digit2");
             inputs.addInput(config, CheatOptions.Give_Explain_Conversation_Stone, "C,Digit3");
@@ -676,9 +674,6 @@ namespace CheatsMod
                             break;
                         case CheatOptions.Give_Lantern_Broken:
                             Possession.pickUpLantern(true, false);
-                            break;
-                        case CheatOptions.Give_Lantern_Invalid:
-                            Possession.pickUpDreamLantern(DreamLanternType.Invalid, false);
                             break;
                         case CheatOptions.Give_Lantern_Gen1:
                             Possession.pickUpDreamLantern(DreamLanternType.Nonfunctioning, false);

@@ -127,8 +127,7 @@ Left `Alt` + `2` | Explode Ship
 `G` + `L` + `3` | Give Player Generation 1 Lantern (Unlit)
 `G` + `L` + `4` | Give Player Generation 2 Lantern (Lit)
 `G` + `L` + `5` | Give Player Generation 3 Lantern (Lit)
-`G` + `L` + `6` | Give Player Invalid Lantern
-`G` + `L` + `7` | Give Player Vision Torch
+`G` + `L` + `6` | Give Player Vision Torch
 `G` + `R` + `S` + `1` | Give Story 1 Slide Reel
 `G` + `R` + `S` + `2` | Give Story 2 Slide Reel
 `G` + `R` + `S` + `3` | Give Story 3 Slide Reel
