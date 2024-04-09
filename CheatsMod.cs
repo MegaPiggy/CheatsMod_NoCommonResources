@@ -154,6 +154,7 @@ namespace CheatsMod
         private ScreenPrompt cheatsTagger = new ScreenPrompt("");
 
         bool cheatsEnabled = true;
+        bool thrustLimit = true;
         InputMapping<CheatOptions> inputs = new InputMapping<CheatOptions>();
 
         private static MainClass instance;
@@ -222,6 +223,8 @@ namespace CheatsMod
 
             Player.isInvincible = ConfigHelper.getConfigOrDefault<bool>(config, "Invincible", false);
             Ship.isInvincible = Player.isInvincible;
+
+            thrustLimit = ConfigHelper.getConfigOrDefault<bool>(config, "Thrust Limit", false);
 
             Player.hasUnlimitedFuel = ConfigHelper.getConfigOrDefault<bool>(config, "Unlimited Fuel", false);
             Ship.hasUnlimitedFuel = Player.hasUnlimitedFuel;
@@ -394,10 +397,13 @@ namespace CheatsMod
             ModHelper.Console.WriteLine("CheatMods: Player Awakes");
             Position.Awake();
             Items.Awake();
-            //foreach (ThrustRuleset thrustRuleset in GameObject.FindObjectsOfType<ThrustRuleset>())
-            //{
-            //    thrustRuleset._thrustLimit *= 100;
-            //}
+            if (!thrustLimit)
+            {
+                foreach (ThrustRuleset thrustRuleset in GameObject.FindObjectsOfType<ThrustRuleset>())
+                {
+                    thrustRuleset._thrustLimit *= 100;
+                }
+            }
             //GameObject.DontDestroyOnLoad(new GameObject("LudicrousSpeed", typeof(LudicrousSpeed)));
         }
 

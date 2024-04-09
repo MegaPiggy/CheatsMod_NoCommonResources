@@ -57,6 +57,13 @@
       "no": "Disabled",
       "title": "Fog"
     },
+    "Thrust Limit": {
+      "type": "toggle",
+      "value": false,
+      "yes": "Enabled",
+      "no": "Disabled",
+      "title": "Thrust Limit"
+    },
 
     "Fill Fuel and Health": "C,J",
     "Toggle Helmet": "C,H",
