@@ -208,7 +208,7 @@ namespace CheatsMod.CR
                 {
                     Locator.GetShipLogManager().RevealFact(fact, false, notifyPlayer);
                 }
-                else
+                else if (StandaloneProfileManager.SharedInstance.currentProfileGameSave.shipLogFactSaves.ContainsKey(fact))
                 {
                     var savedFact = StandaloneProfileManager.SharedInstance.currentProfileGameSave.shipLogFactSaves[fact];
                     savedFact.newlyRevealed = false;

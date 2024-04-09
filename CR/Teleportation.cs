@@ -455,7 +455,7 @@ namespace CheatsMod.CR
                         Physics.IgnoreCollision(sandLevelController.GetSandCollider(), componentsInChild, ignore);
             }
             GlobalMessenger<OWRigidbody>.FireEvent(ignore ? "EnterTimeLoopCentral" : "ExitTimeLoopCentral", Locator.GetPlayerBody());
-            Locator.GetDreamWorldController().ExitDreamWorld(DeathType.Dream);
+            if (Locator.GetDreamWorldController() != null) Locator.GetDreamWorldController().ExitDreamWorld(DeathType.Dream);
         }
 
         private static ShuttleBody getShuttleBody()
