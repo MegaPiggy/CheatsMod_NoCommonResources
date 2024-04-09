@@ -249,8 +249,7 @@ namespace CheatsMod.CR
             {
                 if (reel.name.Contains(name))
                 {
-                    var newReel = reel.InstantiateInactive(GetParentBody());
-                    newReel.SetActive(true);
+                    var newReel = reel.Instantiate(GetParentBody());
                     SetVisible(newReel, true);
                     if (invert)
                     {
@@ -362,8 +361,7 @@ namespace CheatsMod.CR
             {
                 if (stone.GetRemoteCameraID().Equals(type))
                 {
-                    var newStone = stone.InstantiateInactive(parent);
-                    newStone.SetActive(true);
+                    var newStone = stone.Instantiate(parent);
                     SetVisible(newStone, true);
                     SetUpStreaming(newStone);
                     return newStone;
@@ -400,8 +398,7 @@ namespace CheatsMod.CR
         {
             foreach (VisionTorchItem torch in Resources.FindObjectsOfTypeAll<VisionTorchItem>())
             {
-                var newTorch = torch.InstantiateInactive(GetParentBody());
-                newTorch.SetActive(true);
+                var newTorch = torch.Instantiate(GetParentBody());
                 SetVisible(newTorch, true);
                 foreach (Behaviour behaviour in newTorch.GetComponentsInChildren<Behaviour>())
                     behaviour.enabled = true;
@@ -417,8 +414,7 @@ namespace CheatsMod.CR
             {
                 if (stone.GetWord().Equals(type))
                 {
-                    var newStone = stone.InstantiateInactive(GetParentBody());
-                    newStone.SetActive(true);
+                    var newStone = stone.Instantiate(GetParentBody());
                     newStone.Reveal();
                     SetUpStreaming(newStone);
                     return newStone;
@@ -434,8 +430,7 @@ namespace CheatsMod.CR
                 if (lantern.IsInteractable()
                     && (broken == lantern.name.Contains("BROKEN")))
                 {
-                    var newLantern = lantern.InstantiateInactive(GetParentBody());
-                    newLantern.SetActive(true);
+                    var newLantern = lantern.Instantiate(GetParentBody());
                     SetVisible(newLantern, true);
                     lantern._startsLit = lit;
                     lantern._lit = lit;
@@ -463,13 +458,7 @@ namespace CheatsMod.CR
                     lantern.enabled = true;
                     var parentBody = GetParentBody();
                     var parentSector = parentBody.GetComponentInChildren<Sector>();
-                    var newLantern = lantern.InstantiateInactive(parentBody);
-                    newLantern.transform.localPosition = Vector3.zero;
-                    newLantern.transform.localRotation = Quaternion.identity;
-                    newLantern.transform.localScale = Vector3.one;
-                    Vector3 lossy = newLantern.transform.lossyScale;
-                    newLantern.transform.localScale = new Vector3(1 / lossy.x, 1 / lossy.y, 1 / lossy.z);
-                    newLantern.SetActive(true);
+                    var newLantern = lantern.Instantiate(parentBody);
                     SetVisible(newLantern, true);
                     newLantern.SetSector(parentSector);
                     newLantern.enabled = true;
@@ -518,8 +507,7 @@ namespace CheatsMod.CR
             {
                 if (core.GetWarpCoreType().Equals(type))
                 {
-                    var newCore = core.InstantiateInactive(GetParentBody());
-                    newCore.SetActive(true);
+                    var newCore = core.Instantiate(GetParentBody());
                     SetVisible(newCore, true);
                     SetUpStreaming(newCore);
                     return newCore;

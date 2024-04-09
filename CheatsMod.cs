@@ -945,6 +945,25 @@ namespace CheatsMod
         public static T InstantiateInactive<T>(this T original) where T : Component => InstantiateInactive(original.gameObject).GetComponent<T>();
         public static T InstantiateInactive<T>(this T original, Transform parent) where T : Component => InstantiateInactive(original.gameObject, parent).GetComponent<T>();
 
+        public static GameObject Instantiate(this GameObject original)
+        {
+            var copy = UnityEngine.Object.Instantiate(original);
+            copy.name = original.name;
+            original.SetActive(true);
+            return copy;
+        }
+
+        public static GameObject Instantiate(this GameObject original, Transform parent)
+        {
+            var copy = UnityEngine.Object.Instantiate(original, parent);
+            copy.name = original.name;
+            original.SetActive(true);
+            return copy;
+        }
+
+        public static T Instantiate<T>(this T original) where T : Component => Instantiate(original.gameObject).GetComponent<T>();
+        public static T Instantiate<T>(this T original, Transform parent) where T : Component => Instantiate(original.gameObject, parent).GetComponent<T>();
+
         public static void SetActive<T>(this T original, bool value) where T : Component => original.gameObject.SetActive(value);
     }
 }
