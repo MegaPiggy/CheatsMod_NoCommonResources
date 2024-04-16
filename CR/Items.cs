@@ -489,9 +489,9 @@ namespace CheatsMod.CR
                                 }
                             });
                         }
-                        else
+                        else if (type != DreamLanternType.Malfunctioning)
                         {
-                            newLantern.SetLit(true);
+                            newLantern.SetLit(MainClass.Instance.inDreamWorld);
                         }
                     }
                     SetUpStreaming(newLantern);
