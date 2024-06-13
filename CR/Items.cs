@@ -1,11 +1,8 @@
 ﻿using OWML.Common;
-using OWML.ModHelper;
-using OWML.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace CheatsMod.CR
 {
@@ -101,150 +98,180 @@ namespace CheatsMod.CR
             return null;
         }
 
+        public struct SlideReel
+        {
+            public SlideReelStory type;
+            public bool burned;
+            public string name;
+            public string container;
+            public bool invert = false;
+
+            public SlideReel(SlideReelStory type, bool burned)
+            {
+                this.type = type;
+                this.burned = burned;
+                string burnS = burned ? "Burned" : "Complete";
+                switch (type)
+                {
+                    case SlideReelStory.Story_1:
+                        name = $"Reel_1_Story_{burnS}";
+                        container = name;
+                        break;
+                    case SlideReelStory.Story_2:
+                        name = $"Reel_2_Story_{burnS}";
+                        container = name;
+                        break;
+                    case SlideReelStory.Story_3:
+                        name = $"Reel_3_Story_{burnS}";
+                        container = name;
+                        break;
+                    case SlideReelStory.Story_4:
+                        name = $"Reel_4_Story_Burned";
+                        container = name;
+                        if (!burned)
+                        {
+                            container = "Reel_4_Story_Vision";
+                            invert = true;
+                        }
+                        break;
+                    case SlideReelStory.LibraryPath_1:
+                        name = $"Reel_1_LibraryPath";
+                        container = name;
+                        break;
+                    case SlideReelStory.LibraryPath_2:
+                        name = $"Reel_2_LibraryPath";
+                        container = name;
+                        break;
+                    case SlideReelStory.LibraryPath_3:
+                        name = $"Reel_3_LibraryPath";
+                        container = name;
+                        break;
+                    case SlideReelStory.Seal_1:
+                        name = $"Reel_1_Seal";
+                        container = name;
+                        break;
+                    case SlideReelStory.Seal_2:
+                        name = $"Reel_2_Seal";
+                        container = name;
+                        break;
+                    case SlideReelStory.Seal_3:
+                        name = $"Reel_3_Seal";
+                        container = name;
+                        break;
+                    case SlideReelStory.DreamRule_1:
+                        name = $"Reel_1_DreamRule";
+                        container = name;
+                        break;
+                    case SlideReelStory.DreamRule_2_v1:
+                        name = $"Reel_2_DreamRule_v1";
+                        container = name;
+                        break;
+                    case SlideReelStory.DreamRule_2_v2:
+                        name = $"Reel_2_DreamRule_v2";
+                        container = name;
+                        break;
+                    case SlideReelStory.DreamRule_3:
+                        name = $"Reel_3_DreamRule";
+                        container = name;
+                        break;
+                    case SlideReelStory.Burning:
+                        name = $"Reel_Burning";
+                        container = name;
+                        break;
+                    case SlideReelStory.Experiment:
+                        if (burned)
+                        {
+                            name = $"Reel_ExperimentWatch_{burnS}";
+                        }
+                        else
+                        {
+                            name = $"Reel_ExperimentWatch";
+                        }
+                        container = name;
+                        break;
+                    case SlideReelStory.DamageReport:
+                        name = $"Reel_DamageReport";
+                        container = name;
+                        break;
+                    case SlideReelStory.LanternSecret:
+                        name = $"Reel_LanternSecret";
+                        container = name;
+                        break;
+                    case SlideReelStory.Story_5_Complete:
+                        name = "Reel_Destroyed_8";
+                        container = "Reel_5_Story_Vision_Complete";
+                        invert = true;
+                        break;
+                    case SlideReelStory.Story_5_NoVessel:
+                        name = "Reel_Destroyed_8";
+                        container = "Reel_5_Story_Vision_NoVessel";
+                        invert = true;
+                        break;
+                    case SlideReelStory.Story_5_NoInterloper:
+                        name = "Reel_Destroyed_8";
+                        container = "Reel_5_Story_Vision_NoInterloper";
+                        invert = true;
+                        break;
+                    case SlideReelStory.Story_5_NoInterloperNoVessel:
+                        name = "Reel_Destroyed_8";
+                        container = "Reel_5_Story_Vision_NoInterloperNoVessel";
+                        invert = true;
+                        break;
+                    case SlideReelStory.PrisonPeephole_Vision:
+                        name = "Reel_Destroyed_8";
+                        container = "Reel_PrisonPeephole_Vision";
+                        invert = true;
+                        break;
+                    case SlideReelStory.PrisonerFarewellVision:
+                        name = "Reel_Destroyed_8";
+                        container = "Reel_PrisonerFarewellVision";
+                        invert = true;
+                        break;
+                    case SlideReelStory.TowerVision:
+                        name = "Reel_Destroyed_8";
+                        container = "Reel_TowerVision";
+                        invert = true;
+                        break;
+                    case SlideReelStory.SignalJammer:
+                        name = "Reel_Destroyed_8";
+                        container = "AutoProjector_SignalJammer";
+                        break;
+                    case SlideReelStory.Homeworld:
+                        name = "Reel_Destroyed_8";
+                        container = "AutoProjector_Homeworld";
+                        break;
+                    case SlideReelStory.SupernovaEscape:
+                        name = "Reel_Destroyed_8";
+                        container = "AutoProjector_SupernovaEscape";
+                        break;
+                    default:
+                        name = "Reel_Destroyed_8";
+                        container = name;
+                        break;
+                }
+            }
+
+            public override string ToString()
+            {
+                var burnS = burned ? "Burned" : "Complete";
+                var invertS = invert ? "Inverted" : "Verted";
+                return $"{type} {{{burnS}, {name}, {container}, {invertS}}}";
+            }
+        }
+
+        public static SlideReel structFromType(SlideReelStory type, bool burned)
+        {
+            return new SlideReel(type, burned);
+        }
+
         public static SlideReelItem createSlideReel(SlideReelStory type, bool burned)
         {
-            var burnS = burned ? "Burned" : "Complete";
-            String name;
-            String container;
-            bool invert = false;
-            switch (type)
-            {
-                case SlideReelStory.Story_1:
-                    name = $"Reel_1_Story_{burnS}";
-                    container = name;
-                    break;
-                case SlideReelStory.Story_2:
-                    name = $"Reel_2_Story_{burnS}";
-                    container = name;
-                    break;
-                case SlideReelStory.Story_3:
-                    name = $"Reel_3_Story_{burnS}";
-                    container = name;
-                    break;
-                case SlideReelStory.Story_4:
-                    name = $"Reel_4_Story_Burned";
-                    container = name;
-                    if (!burned)
-                    {
-                        container = "Reel_4_Story_Vision";
-                        invert = true;
-                    }
-                    break;
-                case SlideReelStory.LibraryPath_1:
-                    name = $"Reel_1_LibraryPath";
-                    container = name;
-                    break;
-                case SlideReelStory.LibraryPath_2:
-                    name = $"Reel_2_LibraryPath";
-                    container = name;
-                    break;
-                case SlideReelStory.LibraryPath_3:
-                    name = $"Reel_3_LibraryPath";
-                    container = name;
-                    break;
-                case SlideReelStory.Seal_1:
-                    name = $"Reel_1_Seal";
-                    container = name;
-                    break;
-                case SlideReelStory.Seal_2:
-                    name = $"Reel_2_Seal";
-                    container = name;
-                    break;
-                case SlideReelStory.Seal_3:
-                    name = $"Reel_3_Seal";
-                    container = name;
-                    break;
-                case SlideReelStory.DreamRule_1:
-                    name = $"Reel_1_DreamRule";
-                    container = name;
-                    break;
-                case SlideReelStory.DreamRule_2_v1:
-                    name = $"Reel_2_DreamRule_v1";
-                    container = name;
-                    break;
-                case SlideReelStory.DreamRule_2_v2:
-                    name = $"Reel_2_DreamRule_v2";
-                    container = name;
-                    break;
-                case SlideReelStory.DreamRule_3:
-                    name = $"Reel_3_DreamRule";
-                    container = name;
-                    break;
-                case SlideReelStory.Burning:
-                    name = $"Reel_Burning";
-                    container = name;
-                    break;
-                case SlideReelStory.Experiment:
-                    if (burned)
-                    {
-                        name = $"Reel_ExperimentWatch_{burnS}";
-                    }
-                    else
-                    {
-                        name = $"Reel_ExperimentWatch";
-                    }
-                    container = name;
-                    break;
-                case SlideReelStory.DamageReport:
-                    name = $"Reel_DamageReport";
-                    container = name;
-                    break;
-                case SlideReelStory.LanternSecret:
-                    name = $"Reel_LanternSecret";
-                    container = name;
-                    break;
-                case SlideReelStory.Story_5_Complete:
-                    name = "Reel_Destroyed_8";
-                    container = "Reel_5_Story_Vision_Complete";
-                    invert = true;
-                    break;
-                case SlideReelStory.Story_5_NoVessel:
-                    name = "Reel_Destroyed_8";
-                    container = "Reel_5_Story_Vision_NoVessel";
-                    invert = true;
-                    break;
-                case SlideReelStory.Story_5_NoInterloper:
-                    name = "Reel_Destroyed_8";
-                    container = "Reel_5_Story_Vision_NoInterloper";
-                    invert = true;
-                    break;
-                case SlideReelStory.Story_5_NoInterloperNoVessel:
-                    name = "Reel_Destroyed_8";
-                    container = "Reel_5_Story_Vision_NoInterloperNoVessel";
-                    invert = true;
-                    break;
-                case SlideReelStory.PrisonPeephole_Vision:
-                    name = "Reel_Destroyed_8";
-                    container = "Reel_PrisonPeephole_Vision";
-                    invert = true;
-                    break;
-                case SlideReelStory.PrisonerFarewellVision:
-                    name = "Reel_Destroyed_8";
-                    container = "Reel_PrisonerFarewellVision";
-                    invert = true;
-                    break;
-                case SlideReelStory.TowerVision:
-                    name = "Reel_Destroyed_8";
-                    container = "Reel_TowerVision";
-                    invert = true;
-                    break;
-                case SlideReelStory.SignalJammer:
-                    name = "Reel_Destroyed_8";
-                    container = "AutoProjector_SignalJammer";
-                    break;
-                case SlideReelStory.Homeworld:
-                    name = "Reel_Destroyed_8";
-                    container = "AutoProjector_Homeworld";
-                    break;
-                case SlideReelStory.SupernovaEscape:
-                    name = "Reel_Destroyed_8";
-                    container = "AutoProjector_SupernovaEscape";
-                    break;
-                default:
-                    name = "Reel_Destroyed_8";
-                    container = name;
-                    break;
-            }
+            var slideStruct = structFromType(type, burned);
+
+            string name = slideStruct.name;
+            string container = slideStruct.container;
+            bool invert = slideStruct.invert;
+
             foreach (SlideReelItem reel in Resources.FindObjectsOfTypeAll<SlideReelItem>())
             {
                 if (reel.name.Contains(name))
