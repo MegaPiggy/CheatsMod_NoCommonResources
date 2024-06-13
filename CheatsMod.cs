@@ -439,6 +439,7 @@ namespace CheatsMod
 
                 foreach (var input in currentFrame)
                 {
+                    Console.WriteLine(input.Item1.ToString());
                     switch (input.Item1)
                     {
                         case CheatOptions.Fill_Fuel_and_Health:
