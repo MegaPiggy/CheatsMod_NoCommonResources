@@ -3,14 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static StencilPreviewImageEffect;
+using UnityEngine;
 
 namespace CheatsMod.CR
 {
     public static class QuantumMoonHelper
     {
+        public static QuantumMoon QuantumMoon => Locator.GetAstroObject(AstroObject.Name.QuantumMoon).GetComponentInChildren<QuantumMoon>();
+
         public static AstroObject.Name getState()
         {
-            switch (Locator.GetAstroObject(AstroObject.Name.QuantumMoon).GetComponentInChildren<QuantumMoon>().GetStateIndex())
+            switch (QuantumMoon.GetStateIndex())
             {
                 case 0:
                     return AstroObject.Name.HourglassTwins;
@@ -51,24 +55,30 @@ namespace CheatsMod.CR
                 default:
                     index = -1; break;
             }
-            Locator.GetAstroObject(AstroObject.Name.QuantumMoon).GetComponentInChildren<QuantumMoon>().SetSurfaceState(index);
+            collapseToIndex(index);
         }
 
         public static void nextState()
         {
-            var index = Locator.GetAstroObject(AstroObject.Name.QuantumMoon).GetComponentInChildren<QuantumMoon>().GetStateIndex();
-            Locator.GetAstroObject(AstroObject.Name.QuantumMoon).GetComponentInChildren<QuantumMoon>().SetSurfaceState((index + 1) % 5);
+            var index = QuantumMoon.GetStateIndex();
+            collapseToIndex((index + 1) % 5);
         }
 
         public static void previousState()
         {
-            var index = Locator.GetAstroObject(AstroObject.Name.QuantumMoon).GetComponentInChildren<QuantumMoon>().GetStateIndex();
-            Locator.GetAstroObject(AstroObject.Name.QuantumMoon).GetComponentInChildren<QuantumMoon>().SetSurfaceState((index - 1) % 5);
+            var index = QuantumMoon.GetStateIndex();
+            collapseToIndex((index - 1) % 5);
         }
 
         public static void collapse()
         {
-            Locator.GetAstroObject(AstroObject.Name.QuantumMoon).GetComponentInChildren<QuantumMoon>().Collapse(true);
+            QuantumMoon.Collapse(true);
+        }
+
+        private static void collapseToIndex(int index)
+        {
+            QuantumMoon._collapseToIndex = index;
+            collapse();
         }
     }
 }
