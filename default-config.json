@@ -1,6 +1,13 @@
 {
   "enabled": true,
   "settings": {
+    "Watermark": {
+      "type": "toggle",
+      "value": true,
+      "yes": "Enabled",
+      "no": "Disabled",
+      "title": "Watermark"
+    },
     "Player Invincible": {
       "type": "toggle",
       "value": true,

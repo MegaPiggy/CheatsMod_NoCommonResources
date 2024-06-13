@@ -155,6 +155,7 @@ namespace CheatsMod
         private ScreenPrompt cheatsTagger = new ScreenPrompt("");
 
         bool cheatsEnabled = true;
+        bool watermark = true;
         bool thrustLimit = true;
         InputMapping<CheatOptions> inputs = new InputMapping<CheatOptions>();
 
@@ -222,6 +223,7 @@ namespace CheatsMod
         {
             cheatsEnabled = config.Enabled;
 
+            watermark = ConfigHelper.getConfigOrDefault<bool>(config, "Watermark", true);
 
             Player.isInvincible = ConfigHelper.getConfigOrDefault<bool>(config, "Player Invincible", false);
             Ship.isInvincible = ConfigHelper.getConfigOrDefault<bool>(config, "Ship Invincible", false);
@@ -411,9 +413,19 @@ namespace CheatsMod
         void OnGUI()
         {
             cheatsTagger.SetText("CheatsMod v" + verison + ": " + (cheatsEnabled ? "Enabled" : "Disabled"));
-            if (Locator.GetPromptManager()?.GetScreenPromptList(PromptPosition.LowerLeft)?.Contains(cheatsTagger) == false)
+            if (watermark)
             {
-                Locator.GetPromptManager().AddScreenPrompt(cheatsTagger, PromptPosition.LowerLeft, true);
+                if (Locator.GetPromptManager()?.GetScreenPromptList(PromptPosition.LowerLeft)?.Contains(cheatsTagger) == false)
+                {
+                    Locator.GetPromptManager().AddScreenPrompt(cheatsTagger, PromptPosition.LowerLeft, true);
+                }
+            }
+            else
+            {
+                if (Locator.GetPromptManager()?.GetScreenPromptList(PromptPosition.LowerLeft)?.Contains(cheatsTagger) == true)
+                {
+                    Locator.GetPromptManager().RemoveScreenPrompt(cheatsTagger, PromptPosition.LowerLeft);
+                }
             }
         }
 
