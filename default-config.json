@@ -1,12 +1,19 @@
 {
   "enabled": true,
   "settings": {
-    "Invincible": {
+    "Player Invincible": {
       "type": "toggle",
       "value": true,
       "yes": "Enabled",
       "no": "Disabled",
-      "title": "Invincible"
+      "title": "Player Invincible"
+    },
+    "Ship Invincible": {
+      "type": "toggle",
+      "value": true,
+      "yes": "Enabled",
+      "no": "Disabled",
+      "title": "Ship Invincible"
     },
     "Unlimited Health": {
       "type": "toggle",
@@ -67,7 +74,8 @@
 
     "Fill Fuel and Health": "C,J",
     "Toggle Helmet": "C,H",
-    "Toggle Invinciblity": "C,I",
+    "Toggle Player Invincibility": "C,I",
+    "Toggle Ship Invincibility": "C,Q",
     "Toggle Spacesuit": "C,G",
     "Toggle Training Suit": "C,Digit1",
     "Toggle Player Gravity": "P,G",

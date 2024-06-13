@@ -51,7 +51,8 @@ namespace CheatsMod
         Teleport_Ship_To_Player,
         Teleport_Menu,
         Toggle_Helmet,
-        Toggle_Invinciblity,
+        Toggle_Invincibility,
+        Toggle_Ship_Invincibility,
         Toggle_Spacesuit,
         Toggle_Training_Suit,
         Toggle_Player_Gravity,
@@ -221,8 +222,9 @@ namespace CheatsMod
         {
             cheatsEnabled = config.Enabled;
 
-            Player.isInvincible = ConfigHelper.getConfigOrDefault<bool>(config, "Invincible", false);
-            Ship.isInvincible = Player.isInvincible;
+
+            Player.isInvincible = ConfigHelper.getConfigOrDefault<bool>(config, "Player Invincible", false);
+            Ship.isInvincible = ConfigHelper.getConfigOrDefault<bool>(config, "Ship Invincible", false);
 
             thrustLimit = ConfigHelper.getConfigOrDefault<bool>(config, "Thrust Limit", false);
 
@@ -246,7 +248,8 @@ namespace CheatsMod
             inputs.addInput(config, CheatOptions.Toggle_All_Frequencies, "C,F");
             inputs.addInput(config, CheatOptions.Toggle_Rumors, "C,R");
             inputs.addInput(config, CheatOptions.Toggle_Helmet, "C,H");
-            inputs.addInput(config, CheatOptions.Toggle_Invinciblity, "C,I");
+            inputs.addInput(config, CheatOptions.Toggle_Invincibility, "C,I");
+            inputs.addInput(config, CheatOptions.Toggle_Ship_Invincibility, "C,Q");
             inputs.addInput(config, CheatOptions.Toggle_Spacesuit, "C,G");
             inputs.addInput(config, CheatOptions.Toggle_Training_Suit, "C,Digit1");
             inputs.addInput(config, CheatOptions.Toggle_Player_Gravity, "P,G");
@@ -570,10 +573,13 @@ namespace CheatsMod
                             Player.spaceSuit = !Player.spaceSuit;
                             ModHelper.Console.WriteLine("CheatsMod: Space Suit " + Player.spaceSuit);
                             break;
-                        case CheatOptions.Toggle_Invinciblity:
+                        case CheatOptions.Toggle_Invincibility:
                             Player.isInvincible = !Player.isInvincible;
-                            Ship.isInvincible = Player.isInvincible;
-                            ModHelper.Console.WriteLine("CheatsMod: Invicible " + Player.isInvincible);
+                            ModHelper.Console.WriteLine("CheatsMod: Player Invincible " + Player.isInvincible);
+                            break;
+                        case CheatOptions.Toggle_Ship_Invincibility:
+                            Ship.isInvincible = !Ship.isInvincible;
+                            ModHelper.Console.WriteLine("CheatsMod: Ship Invincible " + Ship.isInvincible);
                             break;
                         case CheatOptions.Toggle_Unlimited_Fuel:
                             Player.hasUnlimitedFuel = !Player.hasUnlimitedFuel;
