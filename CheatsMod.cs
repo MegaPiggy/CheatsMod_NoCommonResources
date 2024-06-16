@@ -174,11 +174,12 @@ namespace CheatsMod
 
         void Start()
         {
-            //Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly());
+            //new Harmony("MegaPiggy.CheatsMod").PatchAll(Assembly.GetExecutingAssembly());
             ModHelper.Events.Player.OnPlayerAwake += (player) => onAwake();
             ModHelper.HarmonyHelper.AddPrefix(AccessTools.Method(typeof(OWExtensions), "GetAttachedOWRigidbody", new Type[2] { typeof(Component), typeof(bool) }), typeof(MainClass), nameof(OWExtensions_GetAttachedOWRigidbody));
             ModHelper.HarmonyHelper.AddPrefix<HighSpeedImpactSensor>("FixedUpdate", typeof(MainClass), nameof(HighSpeedImpactSensor_FixedUpdate));
             ModHelper.HarmonyHelper.AddPrefix<PlayerResources>("OnImpact", typeof(MainClass), nameof(PlayerResources_OnImpact));
+            ModHelper.HarmonyHelper.AddPostfix<ThrustRuleset>("GetThrustLimit", typeof(MainClass), nameof(ThrustRuleset_GetThrustLimit));
             ModHelper.Console.WriteLine("CheatMods ready!");
             Position.Awake();
             Items.Awake();
@@ -199,6 +200,14 @@ namespace CheatsMod
             sector._subsectors = new List<Sector>();
             sectorObj.SetActive(true);
             GameObject.DontDestroyOnLoad(body);
+        }
+
+        public static void ThrustRuleset_GetThrustLimit(ref float __result)
+        {
+            if (Instance != null && !Instance.thrustLimit)
+            {
+                __result *= 100;
+            }
         }
 
         void Destory()
@@ -400,13 +409,6 @@ namespace CheatsMod
             ModHelper.Console.WriteLine("CheatMods: Player Awakes");
             Position.Awake();
             Items.Awake();
-            if (!thrustLimit)
-            {
-                foreach (ThrustRuleset thrustRuleset in GameObject.FindObjectsOfType<ThrustRuleset>())
-                {
-                    thrustRuleset._thrustLimit *= 100;
-                }
-            }
             //GameObject.DontDestroyOnLoad(new GameObject("LudicrousSpeed", typeof(LudicrousSpeed)));
         }
 
