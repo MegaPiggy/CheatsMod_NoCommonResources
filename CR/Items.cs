@@ -458,10 +458,23 @@ namespace CheatsMod.CR
                     && (broken == lantern.name.Contains("BROKEN")))
                 {
                     var newLantern = lantern.Instantiate(GetParentBody());
+                    newLantern.name = broken ? "Prefab_IP_BrokenLanternItem" : "Prefab_IP_SimpleLanternItem";
                     SetVisible(newLantern, true);
-                    lantern._startsLit = lit;
-                    lantern._lit = lit;
-                    newLantern._lightSourceShape = lantern._lightSourceShape;
+                    newLantern._startsLit = lit;
+                    newLantern._lit = lit;
+                    newLantern._held = false;
+                    if (newLantern._collisionChecker != null)
+                    {
+                        newLantern._collisionChecker.OnEnterCustomCollider = new OWEvent(32);
+                    }
+                    if (newLantern._extinguishElectricityEffect != null)
+                    {
+                        MainClass.Instance.ModHelper.Events.Unity.FireOnNextUpdate(() =>
+                            newLantern._extinguishElectricityEffect._electricityRenderer.SetActivation(false));
+                    }
+                    newLantern.Awake();
+                    newLantern.Start();
+
                     SetUpStreaming(newLantern);
                     return newLantern;
                 }
