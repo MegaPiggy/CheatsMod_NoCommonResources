@@ -482,6 +482,41 @@ namespace CheatsMod.CR
             return null;
         }
 
+        public static void FixPetals(this DreamLanternController lantern)
+        {
+            // based on https://github.com/Bwc9876/OW-Amogus/blob/master/Amogus/LanternCreator.cs
+            // needed to fix petals looking backwards, among other things
+
+            // Manually copied these values from a artifact lantern so that we don't have to find it (works in Eye)
+            lantern._origLensFlareBrightness = 0f;
+            lantern._focuserPetalsBaseEulerAngles = new Vector3[]
+            {
+                    new Vector3(0.7f, 270.0f, 357.5f),
+                    new Vector3(288.7f, 270.1f, 357.4f),
+                    new Vector3(323.3f, 90.0f, 177.5f),
+                    new Vector3(35.3f, 90.0f, 177.5f),
+                    new Vector3(72.7f, 270.1f, 357.5f)
+            };
+            lantern._dirtyFlag_focus = true;
+            lantern._concealerRootsBaseScale = new Vector3[]
+            {
+                    Vector3.one,
+                    Vector3.one,
+                    Vector3.one
+            };
+            lantern._concealerCoversStartPos = new Vector3[]
+            {
+                    new Vector3(0.0f, 0.0f, 0.0f),
+                    new Vector3(0.0f, -0.1f, 0.0f),
+                    new Vector3(0.0f, -0.2f, 0.0f),
+                    new Vector3(0.0f, 0.2f, 0.0f),
+                    new Vector3(0.0f, 0.1f, 0.0f),
+                    new Vector3(0.0f, 0.0f, 0.0f)
+            };
+            lantern._dirtyFlag_concealment = true;
+            lantern.UpdateVisuals();
+        }
+
         public static DreamLanternItem createDreamLantern(DreamLanternType type, bool lit)
         {
             foreach (DreamLanternItem lantern in Resources.FindObjectsOfTypeAll<DreamLanternItem>())
@@ -507,9 +542,7 @@ namespace CheatsMod.CR
                     {
                         newLantern._lanternController = newController;
                         newController.enabled = true;
-                        newController._focuserPetalsBaseEulerAngles = sourceController._focuserPetalsBaseEulerAngles;
-                        newController._concealerRootsBaseScale = sourceController._concealerRootsBaseScale;
-                        newController._concealerCoversStartPos = sourceController._concealerCoversStartPos;
+                        newController.FixPetals();
                         if (type == DreamLanternType.Functioning)
                         {
                             MainClass.ModHelperInstance.Events.Unity.FireOnNextUpdate(() =>
