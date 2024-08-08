@@ -12,6 +12,7 @@ using PacificEngine.OW_CommonResources.Game.State;
 using PacificEngine.OW_CommonResources.Game.Resource;
 using PacificEngine.OW_CommonResources.Game.Config;
 using PacificEngine.OW_CommonResources.Game;
+using HarmonyLib;
 
 namespace PacificEngine.OW_CheatsMod
 {
@@ -148,6 +149,15 @@ namespace PacificEngine.OW_CheatsMod
         void Destory()
         {
             ModHelper.Console.WriteLine("CheatMods clean up!");
+        }
+
+
+        [HarmonyPrefix]
+
+        [HarmonyPatch(typeof(HighSpeedImpactSensor), "FixedUpdate")]
+        public static bool HighSpeedImpactSensor_FixedUpdate(HighSpeedImpactSensor __instance)
+        {
+            return false;
         }
 
         public override void Configure(IModConfig config)
