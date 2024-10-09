@@ -7,7 +7,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace CheatsMod.CR
+namespace CheatsMod.Utils
 {
 
     public static class Teleportation

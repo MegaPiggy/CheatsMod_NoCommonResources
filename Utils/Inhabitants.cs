@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace CheatsMod.CR
+namespace CheatsMod.Utils
 {
 
     public static class Inhabitants

@@ -12,7 +12,7 @@ using HarmonyLib;
 
 namespace CheatsMod
 {
-    using CR;
+    using Utils;
     using UnityEngine.SceneManagement;
 
     enum CheatOptions

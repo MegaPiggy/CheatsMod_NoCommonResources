@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using static StencilPreviewImageEffect;
 using UnityEngine;
 
-namespace CheatsMod.CR
+namespace CheatsMod.Utils
 {
     public static class QuantumMoonHelper
     {
