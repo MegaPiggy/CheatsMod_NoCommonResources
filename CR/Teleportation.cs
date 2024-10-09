@@ -169,7 +169,7 @@ namespace CheatsMod.CR
             }
         }
 
-        public static void teleportPlayerToProbeCannonCommandModule()
+        public static void teleportPlayerToProbeCannonTrackingModule()
         {
             var parent = Position.getBody(HeavenlyBodies.GiantsDeep);
             if (Locator.GetPlayerBody() && parent)

@@ -34,7 +34,7 @@ namespace CheatsMod
         Teleport_To_HollowsLantern,
         Teleport_To_GiantsDeep,
         Teleport_To_ProbeCannon,
-        Teleport_To_ProbeCannonCommandModule,
+        Teleport_To_ProbeCannonTrackingModule,
         Teleport_To_DarkBramble,
         Teleport_To_Vessel,
         Teleport_To_Interloper,
@@ -300,7 +300,7 @@ namespace CheatsMod
             inputs.addInput(config, CheatOptions.Teleport_To_Probe, "T,NumpadMultiply");
             inputs.addInput(config, CheatOptions.Teleport_To_Nomai_Probe, "T,NumpadMinus");
             inputs.addInput(config, CheatOptions.Teleport_To_Vessel, "T,NumpadPlus");
-            inputs.addInput(config, CheatOptions.Teleport_To_ProbeCannonCommandModule, "T,NumpadPeriod");
+            inputs.addInput(config, CheatOptions.Teleport_To_ProbeCannonTrackingModule, "T,NumpadPeriod");
 
             inputs.addInput(config, CheatOptions.Teleport_To_Backer_Satellite, "T,B");
             inputs.addInput(config, CheatOptions.Teleport_To_Mapping_Satellite, "T,M");
@@ -507,8 +507,8 @@ namespace CheatsMod
                         case CheatOptions.Teleport_To_ProbeCannon:
                             Teleportation.teleportPlayerToProbeCannon();
                             break;
-                        case CheatOptions.Teleport_To_ProbeCannonCommandModule:
-                            Teleportation.teleportPlayerToProbeCannonCommandModule();
+                        case CheatOptions.Teleport_To_ProbeCannonTrackingModule:
+                            Teleportation.teleportPlayerToProbeCannonTrackingModule();
                             break;
                         case CheatOptions.Teleport_To_DarkBramble:
                             Teleportation.teleportPlayerToDarkBramble();
