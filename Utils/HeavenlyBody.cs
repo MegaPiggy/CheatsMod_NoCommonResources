@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CheatsMod.Utils
+namespace CheatsModNoCR.Utils
 {
     public class HeavenlyBody : IEquatable<HeavenlyBody>
     {

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace CheatsMod.Utils
+namespace CheatsModNoCR.Utils
 {
     public static class Ship
     {

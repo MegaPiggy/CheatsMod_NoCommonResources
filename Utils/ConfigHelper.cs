@@ -1,7 +1,7 @@
 ﻿using OWML.Common;
 using System;
 
-namespace CheatsMod.Utils
+namespace CheatsModNoCR.Utils
 {
     public static class ConfigHelper
     {

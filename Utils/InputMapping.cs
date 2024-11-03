@@ -8,7 +8,7 @@ using System.Text;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace CheatsMod.Utils
+namespace CheatsModNoCR.Utils
 {
     public class InputMapping<T>
     {

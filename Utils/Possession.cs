@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CheatsMod.Utils
+namespace CheatsModNoCR.Utils
 {
     public static class Possession
     {

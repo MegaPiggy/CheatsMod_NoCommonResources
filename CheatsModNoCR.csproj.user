@@ -1,0 +1,6 @@
+<Project>
+	<PropertyGroup>
+		<OuterWildsModsDirectory>$(AppData)\OuterWildsModManager\OWML\Mods</OuterWildsModsDirectory>
+		<OutputPath>$(OuterWildsModsDirectory)\$(ModName)</OutputPath>
+	</PropertyGroup>
+</Project>
