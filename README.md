@@ -32,12 +32,12 @@ Default value for commands
 `C` + `O` | Toggle Unlimited Oxygen
 `C` + `U` | Toggle Unlimited Health
 `C` + `T` | Toggle Unlimited 
-`C` + `N` | Toggle Player Gravity
-`C` + `N` | Toggle Ship Gravity
-`C` + `N` | Toggle Player Collision
-`C` + `N` | Toggle Ship Collision
-`C` + `N` | Toggle Player Fluid Collision
-`C` + `N` | Toggle Ship Fluid Collision
+`P` + `G` | Toggle Player Gravity
+`S` + `G` | Toggle Ship Gravity
+`P` + `C` | Toggle Player Collision
+`S` + `C` | Toggle Ship Collision
+`P` + `F` | Toggle Player Fluid Collision
+`S` + `F` | Toggle Ship Fluid Collision
 
 ### Persistent Data
 | Key | Description |
@@ -134,7 +134,7 @@ Left `Alt` + `2` | Explode Ship
 `G` + `R` + `S` + `4` | Give Story 4 Slide Reel
 `G` + `R` + `S` + `5` | Give Story 5 (Complete) Slide Reel
 `G` + `R` + `S` + `6` | Give Burning Slide Reel
-`G` + `R` + `S` + `7` | Give Experiement Slide Reel
+`G` + `R` + `S` + `7` | Give Experiment Slide Reel
 `G` + `R` + `S` + `8` | Give Damage Report Slide Reel
 `G` + `R` + `S` + Numpad `0` | Give Prisoner Vision Slide Reel
 `G` + `R` + `S` + Numpad `1` | Give Prisoner Farewell Vision Slide Reel
