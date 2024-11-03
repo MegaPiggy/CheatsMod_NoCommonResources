@@ -15,7 +15,7 @@
     <RootNamespace>$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
     <AssemblyTitle>$(ModName)</AssemblyTitle>
     <Product>$(ModName)</Product>
-    <VersionPrefix>0.7.5</VersionPrefix>
+    <VersionPrefix>0.7.6</VersionPrefix>
     <AssemblyVersion>$(VersionPrefix)</AssemblyVersion>
     <FileVersion>$(VersionPrefix)</FileVersion>
     <DebugType>portable</DebugType>

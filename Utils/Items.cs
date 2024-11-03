@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace CheatsModNoCR.Utils
+namespace CheatsMod.Utils
 {
     public static class Items
     {

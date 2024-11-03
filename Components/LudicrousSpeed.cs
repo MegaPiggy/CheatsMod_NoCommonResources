@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace CheatsModNoCR.Components
+namespace CheatsMod.Components
 {
 	public class LudicrousSpeed : MonoBehaviour
 	{

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace CheatsModNoCR.Utils
+namespace CheatsMod.Utils
 {
     public static class QuantumMoonHelper
     {

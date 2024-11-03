@@ -10,7 +10,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using HarmonyLib;
 
-namespace CheatsModNoCR
+namespace CheatsMod
 {
     using Utils;
     using UnityEngine.SceneManagement;
@@ -151,7 +151,7 @@ namespace CheatsModNoCR
     [HarmonyPatch]
     public class MainClass : ModBehaviour
     {
-        private const string version = "0.7.5";
+        private const string version = "0.7.6";
         private ScreenPrompt cheatsTagger = new ScreenPrompt("");
 
         bool cheatsEnabled = true;
@@ -174,7 +174,7 @@ namespace CheatsModNoCR
 
         void Start()
         {
-            //new Harmony("MegaPiggy.CheatsModNoCR").PatchAll(Assembly.GetExecutingAssembly());
+            //new Harmony("MegaPiggy.CheatsMod").PatchAll(Assembly.GetExecutingAssembly());
             ModHelper.Events.Player.OnPlayerAwake += (player) => onAwake();
             ModHelper.HarmonyHelper.AddPrefix(AccessTools.Method(typeof(OWExtensions), "GetAttachedOWRigidbody", new Type[2] { typeof(Component), typeof(bool) }), typeof(MainClass), nameof(OWExtensions_GetAttachedOWRigidbody));
             ModHelper.HarmonyHelper.AddPrefix<HighSpeedImpactSensor>("FixedUpdate", typeof(MainClass), nameof(HighSpeedImpactSensor_FixedUpdate));
