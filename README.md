@@ -4,6 +4,9 @@
 ![GitHub release (latest by date)](https://img.shields.io/github/downloads/MegaPiggy/CheatsMod_NoCommonResources/latest/total?style=flat-square)
 
 # Cheats Mod by MegaPiggy
+
+![Thumbnail](Thumbnail.png)
+
 Fork of [Pacific Engine's Cheats Mod](https://github.com/PacificEngine/OW_CheatsMod).
 
 This fork gets rid of the dependency on [Pacific Engine's Common Resources](https://github.com/PacificEngine/OW_CommonResources).
