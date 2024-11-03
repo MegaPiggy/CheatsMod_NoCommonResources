@@ -3,8 +3,8 @@
 	"filename": "CheatsMod.dll",
 	"author": "MegaPiggy & PacificEngine",
 	"name": "Cheats Mod",
-	"uniqueName": "MegaPiggy.CheatsMod",
+	"uniqueName": "PacificEngine.CheatsMod",
 	"version": "0.7.6",
 	"owmlVersion": "2.13.0",
-	"conflicts": [ "PacificEngine.OW_CommonResources", "PacificEngine.CheatsMod" ]
+	"conflicts": [ "PacificEngine.OW_CommonResources" ]
 }

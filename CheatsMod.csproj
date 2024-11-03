@@ -7,10 +7,12 @@
     <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
     <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
     <ProjectView>ProjectFiles</ProjectView>
-    <Authors>MegaPiggy</Authors>
+    <OriginalAuthor>PacificEngine</OriginalAuthor>
+    <CurrentAuthor>MegaPiggy</CurrentAuthor>
+    <Authors>$(CurrentAuthor)</Authors>
     <Copyright>Copyright © $(Authors) 2022</Copyright>
     <OutputPath>Build</OutputPath>
-    <ModName>$(Authors).$(MSBuildProjectName)</ModName>
+    <ModName>$(OriginalAuthor).$(MSBuildProjectName)</ModName>
     <AssemblyName>$(MSBuildProjectName)</AssemblyName>
     <RootNamespace>$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
     <AssemblyTitle>$(ModName)</AssemblyTitle>
@@ -25,6 +27,7 @@
     <PackageReference Include="OuterWildsGameLibs" Version="1.1.15.1018" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="CheatsMod.csproj.user" />
     <None Include="default-config.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
