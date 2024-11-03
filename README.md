@@ -14,7 +14,7 @@ It also fixes a few bugs that were in the original mod and adds more cheats.
 
 ## Installing the Mod
 1) Download and install https://outerwildsmods.com/mod-manager/
-2) From the Application, Install `Cheats Mod` by `MegaPiggy`
+2) From the Application, Install `Cheats Mod (No CR)` by `MegaPiggy`
 
 ## Using Mod
 Default value for commands
@@ -178,7 +178,7 @@ Left `Alt` + `2` | Explode Ship
 `P` + `S` + Numpad `7` | Give Brittle Hollow North Pole Projection Stone
 
 ## Customizing Inputs
-Customized inputs can be done under the options menu, but due to a scrolling glitch, it can be more easily done by editing `%AppData%\OuterWildsModManager\OWML\Mods\MegaPiggy.CheatsMod\config.json`
+Customized inputs can be done under the options menu, but due to a scrolling glitch, it can be more easily done by editing `%AppData%\OuterWildsModManager\OWML\Mods\MegaPiggy.CheatsModNoCR\config.json`
 * You can add multiple key input combos using `|`.
 * You can add multiple keys to the combo inputs using `,`.
 
