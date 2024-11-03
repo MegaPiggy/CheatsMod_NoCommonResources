@@ -151,7 +151,7 @@ namespace CheatsModNoCR
     [HarmonyPatch]
     public class MainClass : ModBehaviour
     {
-        private const string verison = "0.7.5";
+        private const string version = "0.7.5";
         private ScreenPrompt cheatsTagger = new ScreenPrompt("");
 
         bool cheatsEnabled = true;
@@ -414,7 +414,7 @@ namespace CheatsModNoCR
 
         void OnGUI()
         {
-            cheatsTagger.SetText("CheatsMod v" + verison + ": " + (cheatsEnabled ? "Enabled" : "Disabled"));
+            cheatsTagger.SetText("CheatsMod v" + version + ": " + (cheatsEnabled ? "Enabled" : "Disabled"));
             if (watermark)
             {
                 if (Locator.GetPromptManager()?.GetScreenPromptList(PromptPosition.LowerLeft)?.Contains(cheatsTagger) == false)
