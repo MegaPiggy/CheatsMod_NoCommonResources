@@ -181,7 +181,7 @@ Left `Alt` + `2` | Explode Ship
 `P` + `S` + Numpad `7` | Give Brittle Hollow North Pole Projection Stone
 
 ## Customizing Inputs
-Customized inputs can be done under the options menu, but due to a scrolling glitch, it can be more easily done by editing `%AppData%\OuterWildsModManager\OWML\Mods\MegaPiggy.CheatsMod\config.json`
+Customized inputs can be done under the options menu, but due to a scrolling glitch, it can be more easily done by editing `%AppData%\OuterWildsModManager\OWML\Mods\PacificEngine.CheatsMod\config.json`
 * You can add multiple key input combos using `|`.
 * You can add multiple keys to the combo inputs using `,`.
 
