@@ -174,7 +174,7 @@ namespace CheatsModNoCR
 
         void Start()
         {
-            //new Harmony("MegaPiggy.CheatsMod").PatchAll(Assembly.GetExecutingAssembly());
+            //new Harmony("MegaPiggy.CheatsModNoCR").PatchAll(Assembly.GetExecutingAssembly());
             ModHelper.Events.Player.OnPlayerAwake += (player) => onAwake();
             ModHelper.HarmonyHelper.AddPrefix(AccessTools.Method(typeof(OWExtensions), "GetAttachedOWRigidbody", new Type[2] { typeof(Component), typeof(bool) }), typeof(MainClass), nameof(OWExtensions_GetAttachedOWRigidbody));
             ModHelper.HarmonyHelper.AddPrefix<HighSpeedImpactSensor>("FixedUpdate", typeof(MainClass), nameof(HighSpeedImpactSensor_FixedUpdate));

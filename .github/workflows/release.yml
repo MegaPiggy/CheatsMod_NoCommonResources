@@ -15,7 +15,7 @@ permissions:
 
 env:
   PROJ_USERNAME: MegaPiggy
-  PROJ_NAME: CheatsMod
+  PROJ_NAME: CheatsModNoCR
 
 jobs:
   pre_job:
