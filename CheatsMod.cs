@@ -349,16 +349,16 @@ namespace CheatsMod
             inputs.addInput(config, CheatOptions.Give_Slide_SignalJammer, "G,R,S,Numpad3");
             inputs.addInput(config, CheatOptions.Give_Slide_Homeworld, "G,R,S,Numpad4");
             inputs.addInput(config, CheatOptions.Give_Slide_SupernovaEscape, "G,R,S,Numpad5");
-            inputs.addInput(config, CheatOptions.Give_Slide_Path_1, "G,R,P,Digit1");
-            inputs.addInput(config, CheatOptions.Give_Slide_Path_2, "G,R,P,Digit2");
-            inputs.addInput(config, CheatOptions.Give_Slide_Path_3, "G,R,P,Digit3");
-            inputs.addInput(config, CheatOptions.Give_Slide_Seal_1, "G,R,P,Digit4");
-            inputs.addInput(config, CheatOptions.Give_Slide_Seal_2, "G,R,P,Digit5");
-            inputs.addInput(config, CheatOptions.Give_Slide_Seal_3, "G,R,P,Digit6");
-            inputs.addInput(config, CheatOptions.Give_Slide_Rule_1, "G,R,P,Digit7");
-            inputs.addInput(config, CheatOptions.Give_Slide_Rule_2, "G,R,P,Digit8");
-            inputs.addInput(config, CheatOptions.Give_Slide_Rule_3, "G,R,P,Digit9");
-            inputs.addInput(config, CheatOptions.Give_Slide_Rule_4, "G,R,P,Digit0");
+            inputs.addInput(config, CheatOptions.Give_Slide_Path_1, "G,R,H,Digit1");
+            inputs.addInput(config, CheatOptions.Give_Slide_Path_2, "G,R,H,Digit2");
+            inputs.addInput(config, CheatOptions.Give_Slide_Path_3, "G,R,H,Digit3");
+            inputs.addInput(config, CheatOptions.Give_Slide_Seal_1, "G,R,H,Digit4");
+            inputs.addInput(config, CheatOptions.Give_Slide_Seal_2, "G,R,H,Digit5");
+            inputs.addInput(config, CheatOptions.Give_Slide_Seal_3, "G,R,H,Digit6");
+            inputs.addInput(config, CheatOptions.Give_Slide_Rule_1, "G,R,H,Digit7");
+            inputs.addInput(config, CheatOptions.Give_Slide_Rule_2, "G,R,H,Digit8");
+            inputs.addInput(config, CheatOptions.Give_Slide_Rule_3, "G,R,H,Digit9");
+            inputs.addInput(config, CheatOptions.Give_Slide_Rule_4, "G,R,H,Digit0");
 
             inputs.addInput(config, CheatOptions.Give_Identify_Conversation_Stone, "C,Digit2");
             inputs.addInput(config, CheatOptions.Give_Explain_Conversation_Stone, "C,Digit3");
