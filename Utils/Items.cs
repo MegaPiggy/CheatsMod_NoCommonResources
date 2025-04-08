@@ -469,7 +469,7 @@ namespace CheatsMod.Utils
                     }
                     if (newLantern._extinguishElectricityEffect != null)
                     {
-                        MainClass.Instance.ModHelper.Events.Unity.FireOnNextUpdate(() =>
+                        MainClass.Instance.ModHelper.Events.Unity.RunWhen(() => newLantern._extinguishElectricityEffect._electricityRenderer != null, () =>
                             newLantern._extinguishElectricityEffect._electricityRenderer.SetActivation(false));
                     }
                     newLantern.Awake();
@@ -628,6 +628,7 @@ namespace CheatsMod.Utils
                     }
                 }
             }
+            item.gameObject.SetActive(true);
         }
     }
 }
