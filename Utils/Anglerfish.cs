@@ -57,22 +57,32 @@ namespace CheatsMod.Utils
         public static void Start()
         {
             MainClass.HarmonyHelper.AddPrefix<AnglerfishController>("Awake", typeof(Anglerfish), nameof(Anglerfish.Awake));
-            MainClass.HarmonyHelper.AddPrefix<AnglerfishController>("OnDestroy", typeof(Anglerfish), nameof(Anglerfish.OnDestroy));
+            MainClass.HarmonyHelper.AddPrefix<AnglerfishController>("OnEnable", typeof(Anglerfish), nameof(Anglerfish.OnEnable));
+            MainClass.HarmonyHelper.AddPrefix<AnglerfishController>("OnDisable", typeof(Anglerfish), nameof(Anglerfish.OnDisable));
             MainClass.HarmonyHelper.AddPrefix<AnglerfishController>("OnImpact", typeof(Anglerfish), nameof(Anglerfish.onFeel));
             MainClass.HarmonyHelper.AddPrefix<AnglerfishController>("OnClosestAudibleNoise", typeof(Anglerfish), nameof(Anglerfish.onHearSound));
         }
 
-        private static bool Awake(ref AnglerfishController __instance)
+        private static void Awake(ref AnglerfishController __instance)
         {
             anglerfish.Add(__instance);
             updateAnglerfish(__instance);
-            return true;
         }
 
-        private static bool OnDestroy(ref AnglerfishController __instance)
+        private static void OnEnable(ref AnglerfishController __instance)
+        {
+            if (!anglerfish.Contains(__instance)) anglerfish.Add(__instance);
+            updateAnglerfish(__instance);
+        }
+
+        private static void OnDisable(ref AnglerfishController __instance)
         {
             anglerfish.Remove(__instance);
-            return true;
+        }
+
+        internal static void Clear()
+        {
+            anglerfish.Clear();
         }
 
         private static bool onFeel(ref ImpactData impact)
@@ -136,6 +146,7 @@ namespace CheatsMod.Utils
         {
             foreach (AnglerfishController anglerfishController in anglerfish)
             {
+                if (anglerfishController == null) continue;
                 updateAnglerfish(anglerfishController);
             }
         }

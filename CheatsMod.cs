@@ -200,6 +200,7 @@ namespace CheatsMod
             sector._subsectors = new List<Sector>();
             sectorObj.SetActive(true);
             GameObject.DontDestroyOnLoad(body);
+            SceneManager.sceneUnloaded += (s) => Anglerfish.Clear();
         }
 
         public static void ThrustRuleset_GetThrustLimit(ref float __result)
